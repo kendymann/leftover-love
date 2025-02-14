@@ -1,0 +1,116 @@
+.completedPage {
+  /* padding removed as it's handled by layout */
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2C432C;
+  margin-bottom: 1.5rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.statCard h3 {
+  color: #5C715C;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #7C9A7C;
+}
+
+.pickupsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.pickupCard {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.pickupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.organizationName {
+  font-size: 1.25rem;
+  color: #2C432C;
+  font-weight: 600;
+}
+
+.rating {
+  color: #F6B100;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.pickupDetails {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.label {
+  color: #5C715C;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #E8EFE8;
+  color: #2C432C;
+}
+
+.actionButton:hover {
+  background-color: #D1E0D1;
+  transform: translateY(-1px);
+} 
