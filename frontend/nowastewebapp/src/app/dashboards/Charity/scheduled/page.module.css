@@ -1,0 +1,126 @@
+.scheduledPage {
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2C432C;
+}
+
+.addButton {
+  background-color: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(124, 154, 124, 0.2);
+}
+
+.addButton:hover {
+  background-color: #8DAB8D;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 154, 124, 0.3);
+}
+
+.pickupsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.pickupCard {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.pickupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.restaurantName {
+  font-size: 1.25rem;
+  color: #2C432C;
+  font-weight: 600;
+}
+
+.status {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.confirmed {
+  background-color: #E8EFE8;
+  color: #2C432C;
+}
+
+.pending {
+  background-color: #FFF8E6;
+  color: #976600;
+}
+
+.pickupDetails {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.label {
+  color: #5C715C;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #E8EFE8;
+  color: #2C432C;
+}
+
+.actionButton:hover {
+  background-color: #D1E0D1;
+}
+
+.cancelButton {
+  background-color: #FFE5E5;
+  color: #CC0000;
+}
+
+.cancelButton:hover {
+  background-color: #FFD1D1;
+} 

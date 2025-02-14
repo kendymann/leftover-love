@@ -1,0 +1,126 @@
+.accountPage {
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2C432C;
+}
+
+.saveButton {
+  background-color: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(124, 154, 124, 0.2);
+}
+
+.saveButton:hover {
+  background-color: #8DAB8D;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 154, 124, 0.3);
+}
+
+.content {
+  display: grid;
+  gap: 2rem;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.sectionTitle {
+  color: #2C432C;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  color: #5C715C;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid #BED0BE;
+  border-radius: 8px;
+  color: #2C432C;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #7C9A7C;
+  box-shadow: 0 0 0 3px rgba(124, 154, 124, 0.2);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.dangerZone {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #FFE5E5;
+  margin-top: 2rem;
+}
+
+.dangerTitle {
+  color: #CC0000;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.deleteButton {
+  background-color: #FFE5E5;
+  color: #CC0000;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.deleteButton:hover {
+  background-color: #FFD1D1;
+  transform: translateY(-1px);
+} 
