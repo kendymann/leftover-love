@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { FaRecycle } from 'react-icons/fa';
-import styles from './Navbar.module.css'; // assuming the css is in the same folder
+import styles from './navbar.module.css'; // assuming the css is in the same folder
 
 export default function Navbar() {
   return (
