@@ -1,9 +1,57 @@
 'use client';
 import { useParams } from 'next/navigation';
+import { useState } from 'react';
 import styles from './page.module.css';
+import { motion } from 'framer-motion';
+
 
 export default function AccountPage() {
   const { userType } = useParams();
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    name: userType === 'Restaurant' ? "Fresh Bites Restaurant" : "Local Food Bank",
+    email: userType === 'Restaurant' ? "contact@freshbites.com" : "help@localfoodbank.org",
+    phone: userType === 'Restaurant' ? "(555) 123-4567" : "(555) 987-6543",
+    address: userType === 'Restaurant' ? "123 Main St, City" : "456 Oak Ave, City",
+  });
+
+  const [errors, setErrors] = useState({ email: "", phone: "", address: "" });
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^(\(\d{3}\)\s?)?\d{3}[-.\s]?\d{4}$/;
+    return phoneRegex.test(phone);
+  };
+  
+  
+
+  const validateAddress = (address) => {
+    return address.length > 5; // Basic check to ensure it's not too short
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Validate field and update error state
+    if (name === "email") {
+      setErrors({ ...errors, email: validateEmail(value) ? "" : "Invalid email format" });
+    }
+    if (name === "phone") {
+      setErrors({ ...errors, phone: validatePhone(value) ? "" : "Invalid phone format (e.g. (555) 123-4567)" });
+    }
+    if (name === "address") {
+      setErrors({ ...errors, address: validateAddress(value) ? "" : "Address is too short" });
+    }
+  };
+
+  const isFormValid = () => {
+    return validateEmail(formData.email) && validatePhone(formData.phone) && validateAddress(formData.address);
+  };
   
   // This will be replaced with actual data from the backend
   const accountData = {
@@ -28,12 +76,32 @@ export default function AccountPage() {
   };
 
   const data = userType === 'Restaurant' ? accountData.restaurant : accountData.charity;
+  const hasErrors = Object.values(errors).some((error) => error);
+
 
   return (
     <div className={styles.accountPage}>
       <div className={styles.header}>
         <h1 className={styles.title}>Account Settings</h1>
-        <button className={styles.saveButton}>Save Changes</button>
+        <motion.div layout className={styles.buttonWrapper}>
+        <motion.button 
+          className={styles.saveButton} 
+          onClick={() => setIsEditing(!isEditing)}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0.8 }}
+          animate={{ opacity: 1, transition: { duration: 0.3 } }}
+          disabled={isEditing && hasErrors} // 🔥 Disables when there are errors
+        >
+          <motion.span
+            key={isEditing ? "save" : "edit"}
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
+            exit={{ opacity: 0, y: 5 }}
+          >
+            {isEditing ? "Save Changes" : "Edit"}
+          </motion.span>
+        </motion.button>
+        </motion.div>
       </div>
 
       <div className={styles.content}>
@@ -45,32 +113,47 @@ export default function AccountPage() {
               <input
                 type="text"
                 className={styles.input}
-                defaultValue={data.name}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                disabled={!isEditing}
               />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Email</label>
               <input
                 type="email"
-                className={styles.input}
-                defaultValue={data.email}
+                className={`${styles.input} ${errors.email && styles.error}`}
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                disabled={!isEditing}
               />
+              {errors.email && <p className={styles.errorText}>{errors.email}</p>}
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Phone</label>
               <input
                 type="tel"
-                className={styles.input}
-                defaultValue={data.phone}
+                className={`${styles.input} ${errors.phone && styles.error}`}
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                disabled={!isEditing}
               />
+              {errors.phone && <p className={styles.errorText}>{errors.phone}</p>}
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Address</label>
               <input
                 type="text"
-                className={styles.input}
-                defaultValue={data.address}
+                className={`${styles.input} ${errors.address && styles.error}`}
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                disabled={!isEditing}
               />
+              {errors.address && <p className={styles.errorText}>{errors.address}</p>}
             </div>
           </div>
         </div>
@@ -83,6 +166,7 @@ export default function AccountPage() {
               className={`${styles.input} ${styles.textarea}`}
               defaultValue={data.description}
               rows={4}
+              disabled={!isEditing} // Disable when not in edit mode
             />
           </div>
           
@@ -94,6 +178,7 @@ export default function AccountPage() {
                   type="text"
                   className={styles.input}
                   defaultValue={data.operatingHours}
+                  disabled={!isEditing} // Disable when not in edit mode
                 />
               </div>
               <div className={styles.formGroup}>
@@ -102,6 +187,7 @@ export default function AccountPage() {
                   type="text"
                   className={styles.input}
                   defaultValue={data.preferredPickupTimes}
+                  disabled={!isEditing} // Disable when not in edit mode
                 />
               </div>
             </>
@@ -113,6 +199,7 @@ export default function AccountPage() {
                   type="text"
                   className={styles.input}
                   defaultValue={data.serviceArea}
+                  disabled={!isEditing} // Disable when not in edit mode
                 />
               </div>
               <div className={styles.formGroup}>
@@ -121,6 +208,7 @@ export default function AccountPage() {
                   type="text"
                   className={styles.input}
                   defaultValue={data.storageCapacity}
+                  disabled={!isEditing} // Disable when not in edit mode
                 />
               </div>
             </>
@@ -136,6 +224,7 @@ export default function AccountPage() {
                 type="password"
                 className={styles.input}
                 placeholder="Enter current password"
+                disabled={!isEditing} // Disable when not in edit mode
               />
             </div>
             <div className={styles.formGroup}>
@@ -144,6 +233,7 @@ export default function AccountPage() {
                 type="password"
                 className={styles.input}
                 placeholder="Enter new password"
+                disabled={!isEditing} // Disable when not in edit mode
               />
             </div>
           </div>
