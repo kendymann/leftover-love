@@ -25,11 +25,41 @@ export default function SignUp() {
     }));
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Implement form submission logic
-    console.log('Form submitted:', { type: selectedType, ...formData });
+  
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+  
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          userType: selectedType,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.message || 'Sign-up failed');
+      }
+  
+      // Redirect to login page after successful signup
+      alert('Account created successfully! Please log in.');
+      window.location.href = '/auth/login';
+    } catch (error) {
+      alert(error.message || 'An error occurred during sign-up');
+    }
   };
+  
 
   const renderForm = () => {
     return (
