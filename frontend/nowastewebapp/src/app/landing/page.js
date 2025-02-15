@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
-import Navbar from "../components/navbar";
 import { FaRecycle, FaShippingFast, FaTrashAlt, FaRegHandshake, FaCalendarAlt, FaChartLine, FaHeart } from "react-icons/fa";
 
 export default function Home() {
   return (
     <div className={styles.pageWrapper}>
-      <Navbar />
 
       {/* Hero Section */}
       <section className={styles.hero}>
@@ -18,6 +17,14 @@ export default function Home() {
           <p>
             Spreading love through food rescue - connecting restaurants with charities to share surplus with those in need.
           </p>
+          <div className={styles.heroButtons}>
+            <Link href="/auth/signup" className={styles.primaryButton}>
+              Sign Up
+            </Link>
+            <Link href="/auth/login" className={styles.secondaryButton}>
+              Log In
+            </Link>
+          </div>
         </div>
       </section>
 
