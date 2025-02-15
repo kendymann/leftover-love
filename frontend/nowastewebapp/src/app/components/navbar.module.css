@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Left and right alignment */
+    align-items: center;
+    padding: 1rem 2rem; /* Adjust as needed */
+    background-color: #D0EAD0; /* Light Green */
+    width: 100%; /* Ensure it spans the full width */
+    position: fixed; /* Optionally make it fixed at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Keep the navbar on top */
+  }
+  
+  .navLeft {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    font-size: 2rem;
+    color: #228B22; /* Forest Green */
+  }
+  
+  .navRight {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navLink {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #333333; /* Charcoal Grey */
+    font-weight: bold;
+  }
+  
+  .navLink:hover {
+    color: #32CD32; /* Lime Green for hover */
+  }
+  
