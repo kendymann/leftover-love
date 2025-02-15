@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { buildApiUrl } from '@/utils/config';
 
 // Function to fetch scheduled pickups
 async function fetchScheduledPickups() {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch('/api/restaurants/pickups/scheduled', {
+    const response = await fetch(buildApiUrl('restaurants/pickups/scheduled'), {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -46,7 +47,7 @@ async function fetchScheduledPickups() {
 async function schedulePickup(pickupData) {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch('/api/restaurants/food-items', {
+    const response = await fetch(buildApiUrl('restaurants/food-items'), {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,

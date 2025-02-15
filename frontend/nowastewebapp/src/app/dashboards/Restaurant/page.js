@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { buildApiUrl } from '@/utils/config';
 
 // Function to fetch dashboard data
 async function fetchDashboardData() {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch('/api/restaurants/stats', {
+    const response = await fetch(buildApiUrl('restaurants/stats'), {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

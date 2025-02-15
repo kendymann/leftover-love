@@ -2,14 +2,15 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import styles from './page.module.css';
+import { buildApiUrl } from '@/utils/config';
 
 // Function to fetch completed pickups based on user type
 async function fetchCompletedPickups(userType) {
   try {
     const token = localStorage.getItem('token');
     const endpoint = userType === 'Restaurant' 
-      ? '/api/restaurants/pickups/completed'
-      : '/api/charities/pickups/completed';
+      ? buildApiUrl('restaurants/pickups/completed')
+      : buildApiUrl('charities/pickups/completed');
 
     const response = await fetch(endpoint, {
       headers: {

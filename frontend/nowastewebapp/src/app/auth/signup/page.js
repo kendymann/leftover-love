@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styles from './page.module.css';
+import { buildApiUrl } from '@/utils/config';
 
 export default function SignUp() {
   const [selectedType, setSelectedType] = useState(null);
@@ -16,6 +17,8 @@ export default function SignUp() {
     phone: '',
     description: ''
   });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,9 +28,10 @@ export default function SignUp() {
     }));
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setIsLoading(true);
   
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match');
@@ -35,10 +39,10 @@ export default function SignUp() {
     }
   
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch(buildApiUrl('auth/signup'), {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           ...formData,
@@ -57,6 +61,8 @@ export default function SignUp() {
       window.location.href = '/auth/login';
     } catch (error) {
       alert(error.message || 'An error occurred during sign-up');
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -150,8 +156,8 @@ export default function SignUp() {
             required
           />
         </div>
-        <button type="submit" className={styles.button}>
-          Create Account
+        <button type="submit" className={styles.button} disabled={isLoading}>
+          {isLoading ? 'Creating Account...' : 'Create Account'}
         </button>
       </motion.form>
     );

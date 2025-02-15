@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { buildApiUrl } from '@/utils/config';
 
 // Function to fetch scheduled pickups
 async function fetchScheduledPickups() {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch('/api/charities/pickups/scheduled', {
+    const response = await fetch(buildApiUrl('charities/pickups/scheduled'), {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
