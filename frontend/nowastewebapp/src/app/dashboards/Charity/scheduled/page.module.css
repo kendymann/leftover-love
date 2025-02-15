@@ -13,6 +13,7 @@
   font-size: 2rem;
   font-weight: 600;
   color: #2C432C;
+  margin-bottom: 2rem;
 }
 
 .addButton {
@@ -39,20 +40,28 @@
 }
 
 .pickupCard {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease-in-out;
+}
+
+.pickupCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(118, 143, 118, 0.15);
 }
 
 .pickupHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(124, 154, 124, 0.2);
 }
 
 .restaurantName {
@@ -63,18 +72,18 @@
 
 .status {
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 1rem;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
 .confirmed {
-  background-color: #E8EFE8;
+  background-color: rgba(124, 154, 124, 0.15);
   color: #2C432C;
 }
 
 .pending {
-  background-color: #FFF8E6;
+  background-color: rgba(246, 177, 0, 0.15);
   color: #976600;
 }
 
@@ -86,41 +95,96 @@
 
 .detail {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  align-items: baseline;
 }
 
 .label {
-  color: #5C715C;
-  font-weight: 500;
-  min-width: 60px;
+  color: #2C432C;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.detail span:not(.label) {
+  color: #2C432C;
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
   justify-content: flex-end;
 }
 
 .actionButton {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background-color: #E8EFE8;
-  color: #2C432C;
-}
-
-.actionButton:hover {
-  background-color: #D1E0D1;
 }
 
 .cancelButton {
-  background-color: #FFE5E5;
+  background-color: rgba(204, 0, 0, 0.1);
   color: #CC0000;
 }
 
 .cancelButton:hover {
-  background-color: #FFD1D1;
+  background-color: rgba(204, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #2C432C;
+  font-size: 1.1rem;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  color: #2C432C;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Error State */
+.errorContainer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.errorMessage {
+  color: #CC0000;
+  margin-bottom: 1rem;
+}
+
+.retryButton {
+  background-color: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.retryButton:hover {
+  background-color: #8DAB8D;
+  transform: translateY(-1px);
 } 

@@ -2,37 +2,38 @@
   /* padding removed as it's handled by layout */
 }
 
-.header {
-  margin-bottom: 2rem;
-}
-
 .title {
   font-size: 2rem;
   font-weight: 600;
   color: #2C432C;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.stats {
+.statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
 .statCard {
-  background: rgba(255, 255, 255, 0.85);
-  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.7);
-  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(118, 143, 118, 0.15);
 }
 
 .statCard h3 {
-  color: #5C715C;
+  color: #2C432C;
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -40,7 +41,20 @@
 .statNumber {
   font-size: 2rem;
   font-weight: 600;
-  color: #7C9A7C;
+  color: #2C432C;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  color: #F6B100;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
 }
 
 .pickupsList {
@@ -49,13 +63,19 @@
 }
 
 .pickupCard {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease-in-out;
+}
+
+.pickupCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(118, 143, 118, 0.15);
 }
 
 .pickupHeader {
@@ -63,6 +83,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(124, 154, 124, 0.2);
 }
 
 .organizationName {
@@ -80,37 +102,94 @@
 .pickupDetails {
   display: grid;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
 }
 
 .detail {
   display: flex;
   gap: 0.5rem;
+  align-items: baseline;
 }
 
-.label {
-  color: #5C715C;
-  font-weight: 500;
-  min-width: 100px;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.actionButton {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  background-color: #E8EFE8;
+.detail span {
   color: #2C432C;
 }
 
-.actionButton:hover {
-  background-color: #D1E0D1;
+.label {
+  color: #2C432C;
+  font-weight: 600;
+  min-width: 100px;
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(124, 154, 124, 0.2);
+}
+
+.feedbackLabel {
+  color: #2C432C;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.feedbackText {
+  color: #2C432C;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #2C432C;
+  font-size: 1.1rem;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  color: #2C432C;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Error State */
+.errorContainer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.errorMessage {
+  color: #CC0000;
+  margin-bottom: 1rem;
+}
+
+.retryButton {
+  background-color: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.retryButton:hover {
+  background-color: #8DAB8D;
   transform: translateY(-1px);
 } 

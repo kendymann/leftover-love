@@ -39,7 +39,7 @@
 }
 
 .pickupCard {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
@@ -87,11 +87,13 @@
 .detail {
   display: flex;
   gap: 0.5rem;
+  color: #2C432C;
+  font-weight: 500;
 }
 
 .label {
-  color: #5C715C;
-  font-weight: 500;
+  color: #2C432C;
+  font-weight: 600;
   min-width: 60px;
 }
 
@@ -123,4 +125,146 @@
 
 .cancelButton:hover {
   background-color: #FFD1D1;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+}
+
+.modalContent h2 {
+  color: #2C432C;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  background: white;
+  border: 1.5px solid #BED0BE;
+  border-radius: 8px;
+  color: #2C432C;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #7C9A7C;
+  box-shadow: 0 0 0 3px rgba(124, 154, 124, 0.2);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #5C715C;
+  font-size: 1.1rem;
+}
+
+/* Error State */
+.errorContainer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.errorMessage {
+  color: #CC0000;
+  margin-bottom: 1rem;
+}
+
+.retryButton {
+  background-color: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.retryButton:hover {
+  background-color: #8DAB8D;
+  transform: translateY(-1px);
+}
+
+/* Special styling for date and time inputs */
+input[type="date"].input,
+input[type="time"].input {
+  appearance: none;
+  -webkit-appearance: none;
+  background: white;
+  padding-right: 2.5rem;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237C9A7C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.5rem) center;
+  background-size: 1.5rem;
+  cursor: pointer;
+}
+
+input[type="date"].input::-webkit-calendar-picker-indicator,
+input[type="time"].input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 2.5rem;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
 } 
