@@ -1,7 +1,5 @@
 .dashboard {
   padding: 1rem;
-  background: linear-gradient(135deg, #F5F7F5, #E8EFE8);
-  min-height: calc(100vh - 64px); /* Account for navbar */
 }
 
 .title {
@@ -19,7 +17,7 @@
 }
 
 .statCard {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
@@ -35,19 +33,20 @@
 }
 
 .statCard h3 {
-  color: #5C715C;
+  color: #2C432C;
   font-size: 1rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .statNumber {
   font-size: 2rem;
   font-weight: 600;
-  color: #7C9A7C;
+  color: #2C432C;
 }
 
 .recentActivity {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
@@ -58,35 +57,69 @@
 
 .recentActivity h2 {
   color: #2C432C;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
 .activityList {
-  color: #5C715C;
+  display: grid;
+  gap: 1rem;
 }
 
 .activityItem {
   padding: 1rem;
-  border-bottom: 1px solid rgba(124, 154, 124, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(124, 154, 124, 0.2);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.activityItem:last-child {
-  border-bottom: none;
+.activityContent {
+  flex: 1;
+}
+
+.activityMessage {
+  color: #2C432C;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.activityDetail {
+  color: #2C432C;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
 .activityTime {
-  color: #8DAB8D;
+  color: #2C432C;
   font-size: 0.875rem;
+  white-space: nowrap;
 }
 
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #2C432C;
+  font-size: 1.1rem;
+}
+
+.emptyMessage {
+  text-align: center;
+  padding: 2rem;
+  color: #2C432C;
+  font-size: 1rem;
+}
+
+/* Error State */
 .errorContainer {
   text-align: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
   backdrop-filter: blur(8px);

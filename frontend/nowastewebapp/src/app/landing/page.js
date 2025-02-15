@@ -3,83 +3,87 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Navbar from "../components/navbar";
-import { FaRecycle, FaShippingFast, FaTrashAlt, FaRegHandshake, FaCalendarAlt, FaChartLine } from "react-icons/fa";
+import { FaRecycle, FaShippingFast, FaTrashAlt, FaRegHandshake, FaCalendarAlt, FaChartLine, FaHeart } from "react-icons/fa";
 
 export default function Home() {
   return (
-    
     <div className={styles.pageWrapper}>
-        {/* Navbar */}
-        <Navbar />
+      <Navbar />
 
       {/* Hero Section */}
       <section className={styles.hero}>
-        <h1>No Waste Platform</h1>
-        <p>
-          Connecting businesses with excess waste to collection services, ensuring sustainability and reducing waste.
-        </p>
+        <div className={styles.heroContent}>
+          <FaHeart className={styles.heartIcon} />
+          <h1>Leftover Love</h1>
+          <p>
+            Spreading love through food rescue - connecting restaurants with charities to share surplus with those in need.
+          </p>
+        </div>
       </section>
 
       {/* Image Section */}
       <section className={styles.imageSection}>
-        <Image src="/donations.jpg" alt="Donations" width={800} height={400} className={styles.image} />
+        <div className={styles.imageWrapper}>
+          <Image src="/donations.jpg" alt="Food Donations" width={800} height={400} className={styles.image} />
+          <div className={styles.imageOverlay}></div>
+        </div>
       </section>
 
       {/* About Us Section */}
       <section className={styles.aboutUs}>
-        <h2>About Us</h2>
+        <h2>Sharing More Than Just Food</h2>
         <p>
-          The No Waste Platform is a sustainability-driven initiative that connects businesses with surplus waste
-          to collection services and recycling partners. Our goal is to minimize landfill waste, promote responsible
-          disposal practices, and create a more eco-friendly world. Whether you're a business looking to donate, recycle,
-          or efficiently dispose of waste, our platform streamlines the process for maximum impact.
+          Leftover Love is a heartfelt initiative bringing together restaurants and charities to reduce food waste
+          while helping those in need. We believe every meal has the potential to make a difference, turning
+          surplus into smiles and waste into warmth. Our platform makes it easy to donate, collect, and track
+          your impact in creating a more sustainable and caring community.
         </p>
       </section>
 
       {/* Benefits Section */}
       <section className={styles.benefits}>
-        <h2>Total Benefits</h2>
+        <h2>Making a Difference Together</h2>
         <div className={styles.benefitsGrid}>
           <div className={styles.benefitBox}>
-            <FaRecycle className={styles.icon} />
-            <h3>Waste Reduction</h3>
+            <FaHeart className={styles.icon} />
+            <h3>Community Impact</h3>
             <p>
-              Reduce the amount of waste sent to landfills by connecting businesses with local waste collection services.
+              Transform surplus food into meaningful meals for those in need, strengthening community bonds.
             </p>
           </div>
           <div className={styles.benefitBox}>
             <FaShippingFast className={styles.icon} />
-            <h3>Efficient Pickup</h3>
+            <h3>Swift Delivery</h3>
             <p>
-              Schedule convenient waste pickups that fit into your business's routine, ensuring no waste is left behind.
+              Quick and efficient pickup system ensuring food reaches those who need it while it's fresh.
             </p>
           </div>
           <div className={styles.benefitBox}>
-            <FaTrashAlt className={styles.icon} />
-            <h3>Proper Disposal</h3>
+            <FaRecycle className={styles.icon} />
+            <h3>Zero Waste</h3>
             <p>
-              Ensure that all waste is disposed of in an environmentally friendly and responsible manner.
+              Minimize environmental impact by redirecting surplus food from landfills to loving homes.
             </p>
           </div>
           <div className={styles.benefitBox}>
             <FaRegHandshake className={styles.icon} />
-            <h3>Business Partnerships</h3>
+            <h3>Meaningful Partnerships</h3>
             <p>
-              Build partnerships with like-minded businesses that are committed to sustainability and waste reduction.
+              Connect with like-minded organizations committed to making a positive difference.
             </p>
           </div>
           <div className={styles.benefitBox}>
             <FaCalendarAlt className={styles.icon} />
-            <h3>Scheduled Collection</h3>
+            <h3>Flexible Scheduling</h3>
             <p>
-              Easily plan and schedule waste pickups to fit your business needs and ensure minimal disruption.
+              Easy-to-use scheduling system that works around your business hours.
             </p>
           </div>
           <div className={styles.benefitBox}>
             <FaChartLine className={styles.icon} />
-            <h3>Sustainability Reports</h3>
+            <h3>Impact Tracking</h3>
             <p>
-              Track and measure your business's sustainability progress with detailed reports on waste reduction.
+              Monitor your contribution to the community with detailed impact reports.
             </p>
           </div>
         </div>
@@ -88,11 +92,15 @@ export default function Home() {
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <h2>No Waste Platform</h2>
-          <p>&copy; 2025 No Waste Platform. All rights reserved.</p>
+          <div className={styles.footerLogo}>
+            <FaHeart className={styles.footerIcon} />
+            <h2>Leftover Love</h2>
+          </div>
+          <p>Turning surplus into smiles, waste into warmth.</p>
           <div className={styles.socialLinks}>
             <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a>
           </div>
+          <p className={styles.copyright}>&copy; 2024 Leftover Love. All rights reserved.</p>
         </div>
       </footer>
     </div>
