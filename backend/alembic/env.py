@@ -13,14 +13,17 @@ load_dotenv()
 config = context.config
 
 # Get the DATABASE_URL from environment variable
-database_url = os.getenv("DATABASE_URL")
+database_url = os.getenv("DATABASE_URL", "")  # Default to empty string if not found
 
 # Handle Railway's postgres:// URLs
 if database_url and database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql://", 1)
 
-# Set SQLAlchemy URL in Alembic config
-config.set_main_option("sqlalchemy.url", database_url)
+# Ensure database_url is a string and set it in the config
+if database_url:
+    config.set_main_option("sqlalchemy.url", str(database_url))
+else:
+    raise ValueError("DATABASE_URL environment variable is not set")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
