@@ -4,7 +4,7 @@ buildCommand = "pip install -r requirements.txt"
 
 [deploy]
 startCommand = "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port $PORT"
-healthcheckPath = "/api/auth"
+healthcheckPath = "/docs"
 healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3 
