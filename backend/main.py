@@ -23,9 +23,16 @@ app = FastAPI(
 )
 
 # Configure CORS
+origins = [
+    "http://localhost:3000",  # Local development
+    "https://journey-hacks2025.vercel.app",  # Production
+    "https://journey-hacks2025-git-main-bazinators-projects.vercel.app",  # Preview/Development deployments
+    os.getenv("FRONTEND_URL")
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
