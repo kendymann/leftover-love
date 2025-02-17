@@ -1,0 +1,232 @@
+.dashboard {
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2C432C;
+  margin-bottom: 2rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease-in-out;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(118, 143, 118, 0.15);
+}
+
+.statCard h3 {
+  color: #2C432C;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2C432C;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.recentActivity, .availablePickups {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.recentActivity h2, .availablePickups h2 {
+  color: #2C432C;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.activityList, .pickupsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.activityItem {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(124, 154, 124, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.activityContent {
+  flex: 1;
+}
+
+.activityMessage {
+  color: #2C432C;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.activityDetail {
+  color: #2C432C;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.activityTime {
+  color: #2C432C;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.pickupCard {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(124, 154, 124, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.pickupCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(118, 143, 118, 0.1);
+}
+
+.pickupHeader {
+  margin-bottom: 1rem;
+}
+
+.pickupHeader h3 {
+  color: #2C432C;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.pickupDetails {
+  margin-bottom: 1.5rem;
+}
+
+.address {
+  color: #2C432C;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.items {
+  color: #2C432C;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.pickupTime {
+  color: #2C432C;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.preferredTime {
+  color: #2C432C;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  background: rgba(124, 154, 124, 0.1);
+  border-radius: 0.375rem;
+  display: inline-block;
+}
+
+.claimButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #7C9A7C;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.claimButton:hover {
+  background-color: #8DAB8D;
+  transform: translateY(-1px);
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #2C432C;
+  font-size: 1.1rem;
+}
+
+.emptyMessage {
+  text-align: center;
+  padding: 2rem;
+  color: #2C432C;
+  font-size: 1rem;
+}
+
+/* Error State */
+.errorContainer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.errorMessage {
+  color: #CC0000;
+  margin-bottom: 1rem;
+}
+
+.retryButton {
+  background-color: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.retryButton:hover {
+  background-color: #8DAB8D;
+  transform: translateY(-1px);
+}
