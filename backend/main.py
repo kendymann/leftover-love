@@ -17,7 +17,7 @@ load_dotenv()
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="NoWaste API",
+    title="Leftover Love API",
     description="API for connecting restaurants with charities to reduce food waste",
     version="1.0.0"
 )
