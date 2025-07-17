@@ -1,9 +1,9 @@
-import { Manrope } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-playfair",
 });
 
 export const metadata = {
@@ -12,12 +12,17 @@ export const metadata = {
   keywords: "food waste, charity, restaurants, donations, sustainability, community",
   author: "Leftover Love Team",
   viewport: "width=device-width, initial-scale=1",
+  icons: {
+    icon: "/Leftover Love Logo Design.png",
+    shortcut: "/Leftover Love Logo Design.png",
+    apple: "/Leftover Love Logo Design.png",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={manrope.variable}>
+      <body className={playfairDisplay.variable}>
         {children}
       </body>
     </html>

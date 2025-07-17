@@ -15,6 +15,13 @@ export default function HomePage() {
       <nav className={styles.navbar}>
         <div className={styles.navContent}>
           <div className={styles.logo}>
+            <Image
+              src="/Leftover Love Logo Design.png"
+              alt="Leftover Love"
+              width={32}
+              height={32}
+              style={{ objectFit: 'contain' }}
+            />
             <h3>Leftover Love</h3>
           </div>
           <div className={styles.navLinks}>
@@ -30,10 +37,13 @@ export default function HomePage() {
         <div className={styles.heroLayout}>
           {/* Left Photo - Full Width */}
           <div className={styles.heroImageLeft}>
-            <div className={styles.imageContainer}>
-              <span>🍽️</span>
-              <p>Add restaurant team photo:<br />public/restaurant-team.jpg</p>
-            </div>
+            <Image
+              src="/charity1.jpg"
+              alt="Charity volunteers helping community"
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
 
           {/* Center Content */}
@@ -50,11 +60,8 @@ export default function HomePage() {
               <h2 className={styles.signupTitle}>Join Leftover Love for free</h2>
               
               <div className={styles.buttonStack}>
-                <Link href="/auth/signup?type=restaurant" className={styles.primaryButton}>
-                  Sign up as Restaurant
-                </Link>
-                <Link href="/auth/signup?type=charity" className={styles.secondaryButton}>
-                  Sign up as Charity
+                <Link href="/auth/signup" className={styles.primaryButton}>
+                  Sign Up
                 </Link>
               </div>
 
@@ -70,10 +77,13 @@ export default function HomePage() {
 
           {/* Right Photo - Full Width */}
           <div className={styles.heroImageRight}>
-            <div className={styles.imageContainer}>
-              <span>❤️</span>
-              <p>Add charity volunteers photo:<br />public/charity-volunteers.jpg</p>
-            </div>
+            <Image
+              src="/charity2.jpg"
+              alt="Community members sharing food"
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
         </div>
       </section>
@@ -104,10 +114,13 @@ export default function HomePage() {
       <section className={styles.features}>
         <div className={styles.featureItem}>
           <div className={styles.featureImage}>
-            <div className={styles.imagePlaceholder}>
-              <span>📱</span>
-              <p>Add app screenshot here:<br />public/restaurant-dashboard.jpg</p>
-            </div>
+            <Image
+              src="/charitybags.jpg"
+              alt="Restaurant food donation bags ready for pickup"
+              width={400}
+              height={350}
+              style={{ objectFit: 'cover', borderRadius: '16px' }}
+            />
           </div>
           <div className={styles.featureContent}>
             <h2>For Restaurants</h2>
@@ -131,10 +144,13 @@ export default function HomePage() {
             </ul>
           </div>
           <div className={styles.featureImage}>
-            <div className={styles.imagePlaceholder}>
-              <span>🌟</span>
-              <p>Add charity dashboard screenshot:<br />public/charity-dashboard.jpg</p>
-            </div>
+            <Image
+              src="/donations.jpg"
+              alt="Fresh food donations ready for charity pickup"
+              width={400}
+              height={350}
+              style={{ objectFit: 'cover', borderRadius: '16px' }}
+            />
           </div>
         </div>
       </section>
@@ -147,22 +163,31 @@ export default function HomePage() {
           
           <div className={styles.communityGrid}>
             <div className={styles.communityCard}>
-              <div className={styles.imagePlaceholder}>
-                <span>👥</span>
-                <p>Happy community photo 1:<br />public/community-1.jpg</p>
-              </div>
+              <Image
+                src="/comm1.jpg"
+                alt="Community volunteers working together"
+                width={300}
+                height={250}
+                style={{ objectFit: 'cover', borderRadius: '16px' }}
+              />
             </div>
             <div className={styles.communityCard}>
-              <div className={styles.imagePlaceholder}>
-                <span>🤝</span>
-                <p>Happy community photo 2:<br />public/community-2.jpg</p>
-              </div>
+              <Image
+                src="/comm2.jpg"
+                alt="People sharing meals and building community"
+                width={300}
+                height={250}
+                style={{ objectFit: 'cover', borderRadius: '16px' }}
+              />
             </div>
             <div className={styles.communityCard}>
-              <div className={styles.imagePlaceholder}>
-                <span>🌟</span>
-                <p>Happy community photo 3:<br />public/community-3.jpg</p>
-              </div>
+              <Image
+                src="/comm3.jpg"
+                alt="Community members making a difference together"
+                width={300}
+                height={250}
+                style={{ objectFit: 'cover', borderRadius: '16px' }}
+              />
             </div>
           </div>
           
@@ -176,7 +201,16 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerBrand}>
-            <h3>Leftover Love</h3>
+            <div className={styles.footerLogo}>
+              <Image
+                src="/Leftover Love Logo Design.png"
+                alt="Leftover Love"
+                width={24}
+                height={24}
+                style={{ objectFit: 'contain' }}
+              />
+              <h3>Leftover Love</h3>
+            </div>
             <p>Turning waste into warmth, surplus into smiles.</p>
           </div>
           <div className={styles.footerLinks}>
@@ -192,9 +226,6 @@ export default function HomePage() {
               <Link href="/terms">Terms of Service</Link>
             </div>
           </div>
-        </div>
-        <div className={styles.footerBottom}>
-          <p>&copy; 2025 Leftover Love Team. Made with ❤️ for the community.</p>
         </div>
       </footer>
     </div>

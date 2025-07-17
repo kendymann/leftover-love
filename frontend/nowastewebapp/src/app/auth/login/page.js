@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import { buildApiUrl } from '@/utils/config';
@@ -23,7 +23,6 @@ export default function Login() {
       ...prev,
       [name]: value
     }));
-    // Clear any previous errors when user starts typing
     if (error) setError('');
   };
 
@@ -50,14 +49,15 @@ export default function Login() {
         throw new Error(data.message || 'Login failed');
       }
 
-      // Store the token in localStorage or a secure cookie
-      localStorage.setItem('token', data.token);
+      // Store auth data
+      localStorage.setItem('token', data.access_token || data.token);
       localStorage.setItem('userType', userType);
+      localStorage.setItem('userData', JSON.stringify(data.user));
 
-      // Redirect to the appropriate dashboard
+      // Redirect to appropriate dashboard
       router.push(`/dashboards/${userType}`);
-    } catch (err) {
-      setError(err.message || 'An error occurred during login');
+    } catch (error) {
+      setError(error.message || 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -65,74 +65,116 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <motion.div 
-        className={styles.glassCard}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className={styles.title}>Welcome Back</h1>
-        
-        <div className={styles.typeSelector}>
-          <button
-            className={`${styles.typeButton} ${userType === 'restaurant' ? styles.active : ''}`}
-            onClick={() => setUserType('restaurant')}
-          >
-            Restaurant
-          </button>
-          <button
-            className={`${styles.typeButton} ${userType === 'foodbank' ? styles.active : ''}`}
-            onClick={() => setUserType('foodbank')}
-          >
-            Food Bank / Charity
-          </button>
+      {/* Background Image */}
+      <div className={styles.backgroundImage}>
+        <Image
+          src="/charity2.jpg"
+          alt="Community sharing food"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+        />
+        <div className={styles.overlay} />
+      </div>
+
+      {/* Navigation */}
+      <nav className={styles.nav}>
+        <Link href="/" className={styles.logo}>
+          <Image
+            src="/Leftover Love Logo Design.png"
+            alt="Leftover Love"
+            width={28}
+            height={28}
+            style={{ objectFit: 'contain' }}
+          />
+          <h3>Leftover Love</h3>
+        </Link>
+        <Link href="/auth/signup" className={styles.signupLink}>
+          Sign Up
+        </Link>
+      </nav>
+
+      {/* Main Content */}
+      <div className={styles.content}>
+        <div className={styles.formCard}>
+          <div className={styles.header}>
+            <h1>Welcome Back</h1>
+            <p>Log in to continue making a difference</p>
+          </div>
+
+          {/* User Type Selection */}
+          <div className={styles.typeSelection}>
+            <label className={styles.typeLabel}>I am a:</label>
+            <div className={styles.typeButtons}>
+              <button
+                type="button"
+                className={`${styles.typeButton} ${userType === 'restaurant' ? styles.active : ''}`}
+                onClick={() => setUserType('restaurant')}
+              >
+                Restaurant
+              </button>
+              <button
+                type="button"
+                className={`${styles.typeButton} ${userType === 'charity' ? styles.active : ''}`}
+                onClick={() => setUserType('charity')}
+              >
+                Charity
+              </button>
+            </div>
+          </div>
+
+          {error && (
+            <div className={styles.error}>
+              {error}
+            </div>
+          )}
+
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Email</label>
+              <input
+                type="email"
+                name="email"
+                className={styles.input}
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Password</label>
+              <input
+                type="password"
+                name="password"
+                className={styles.input}
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+                placeholder="Your password"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className={styles.submitButton}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Logging In...' : 'Log In'}
+            </button>
+          </form>
+
+          <div className={styles.footer}>
+            <p>
+              Don't have an account?{' '}
+              <Link href="/auth/signup" className={styles.link}>
+                Sign Up
+              </Link>
+            </p>
+          </div>
         </div>
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Email</label>
-            <input
-              type="email"
-              name="email"
-              className={styles.input}
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              placeholder="Enter your email"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Password</label>
-            <input
-              type="password"
-              name="password"
-              className={styles.input}
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-              placeholder="Enter your password"
-            />
-          </div>
-
-          {error && <div className={styles.errorMessage}>{error}</div>}
-
-          <button 
-            type="submit" 
-            className={styles.button}
-            disabled={isLoading}
-          >
-            {isLoading ? 'Logging in...' : 'Log In'}
-          </button>
-        </form>
-
-        <p className={styles.switchText}>
-          Don't have an account?
-          <Link href="/auth/signup" className={styles.switchLink}>
-            Sign up
-          </Link>
-        </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

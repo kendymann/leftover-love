@@ -19,7 +19,7 @@
   --error: #EF4444;
   
   /* Typography */
-  --font-sans: var(--font-manrope), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-playfair), "Playfair Display", serif;
   
   /* Spacing */
   --spacing-xs: 0.25rem;
