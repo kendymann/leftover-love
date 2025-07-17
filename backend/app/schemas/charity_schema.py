@@ -10,7 +10,7 @@ class CharityBase(BaseModel):
     description: Optional[str] = None
 
 class CharityCreate(CharityBase):
-    user_id: int
+    pass
 
 class CharityUpdate(BaseModel):
     name: Optional[str] = None
@@ -26,7 +26,6 @@ class CharityResponse(CharityBase):
     people_helped: int
     food_saved_kg: float
     created_at: datetime
-    updated_at: datetime
-
+    
     class Config:
-        from_attributes = True 
+        from_attributes = True
