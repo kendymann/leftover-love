@@ -13,12 +13,15 @@ Leftover Love started as a hackathon project that was too impactful for us to ju
 - **Pickup Coordination**: Schedule and manage food pickup with local charities
 - **Analytics Dashboard**: Track donations, food saved, and people helped
 ![Restaurant Dashboard](restaurantexampledash.png)
+![Restaurant Donations](restaurantoffers.png)
 ### For Charities
 - **Food Discovery**: Browse available food donations from local restaurants
 - **Pickup Scheduling**: Coordinate pickup times that work for your organization
 - **Impact Reporting**: Track received donations and community impact
 - **Profile Management**: Maintain charity information and contact details
 ![Charity Dashboard](Charityexampledash.png)
+![Charity Offers](foodofferscharity.png)
+![Charity Pickups](charitypickups.png)
 ### Platform Features
 - **Real-time Updates**: Live food availability and pickup status
 - **Ratings on both ends**: Both parties can rate their experience with each other
