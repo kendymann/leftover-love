@@ -2,9 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-    url('/charitybackground.jpg');
+  background-image: url('/charitybackground.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
