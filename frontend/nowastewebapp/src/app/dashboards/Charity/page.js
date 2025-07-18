@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './page.module.css';
 import { buildApiUrl } from '@/utils/config';
 
@@ -135,8 +136,23 @@ export default function CharityDashboard() {
     <div className={styles.dashboard}>
       {/* Header with Branding */}
       <div className={styles.header}>
-        <h1 className={styles.title}>Welcome Back, Community Champion</h1>
-        <p className={styles.subtitle}>Your impact is making a real difference in our community</p>
+        <div className={styles.headerContent}>
+          <h1 className={styles.title}>Welcome Back, Community Champion</h1>
+          <p className={styles.subtitle}>Your impact is making a real difference in our community</p>
+        </div>
+        <div className={styles.brandImage}>
+          <Image
+            src="/donations.jpg"
+            alt="Community Impact"
+            width={120}
+            height={120}
+            style={{ 
+              objectFit: 'cover', 
+              borderRadius: '50%',
+              border: '3px solid rgba(255, 255, 255, 0.3)'
+            }}
+          />
+        </div>
       </div>
       
       {/* Key Metrics */}
