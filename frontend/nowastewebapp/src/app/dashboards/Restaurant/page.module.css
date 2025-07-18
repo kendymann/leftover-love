@@ -1,23 +1,23 @@
 /* Leftover Love - Restaurant Dashboard */
 .dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fffe 0%, #f0f9f7 50%, #e8f5f0 100%);
+  background: linear-gradient(135deg, #F0F8F0, #E0F0E0);
   padding: 0;
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: "Inter", sans-serif;
   position: relative;
   overflow-x: hidden;
 }
 
 /* Hero Header */
 .header {
-  background: linear-gradient(135deg, #2d5d3d 0%, #4a7c59 50%, #6b9b73 100%);
+  background: linear-gradient(135deg, #2E8B57, #3CB371);
   margin: 0;
   padding: 3rem 2rem;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(45, 93, 61, 0.3);
+  box-shadow: 0 20px 60px rgba(46, 139, 87, 0.3);
 }
 
 .header::before {
@@ -39,7 +39,7 @@
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(135deg, #f8fffe 0%, #f0f9f7 100%);
+  background: linear-gradient(135deg, #F0F8F0 0%, #E0F0E0 100%);
   border-radius: 20px 20px 0 0;
 }
 
@@ -50,7 +50,8 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
 }
 
 .brandImage {
@@ -66,9 +67,9 @@
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin: 0 0 1rem 0;
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0;
   background: linear-gradient(135deg, #ffffff 0%, #e8f5f0 100%);
   background-clip: text;
   -webkit-background-clip: text;

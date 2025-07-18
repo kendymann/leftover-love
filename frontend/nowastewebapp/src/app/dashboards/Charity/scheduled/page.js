@@ -107,8 +107,9 @@ export default function CharityScheduledPickups() {
   return (
     <div className={styles.scheduledPage}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Scheduled Pickups</h1>
-        <p className={styles.subtitle}>Your upcoming food collections</p>
+        <div className={styles.headerContent}>
+          <h1 className={styles.title}>Scheduled Pickups</h1>
+        </div>
       </div>
 
       <div className={styles.pickupsList}>
@@ -116,38 +117,39 @@ export default function CharityScheduledPickups() {
           <div className={styles.loading}>Loading scheduled pickups...</div>
         ) : scheduledPickups.length === 0 ? (
           <div className={styles.emptyState}>
-            <p>No scheduled pickups yet</p>
+            <h3>No scheduled pickups yet</h3>
+            <p>Your upcoming food collections will appear here</p>
           </div>
         ) : (
           scheduledPickups.map((pickup) => (
             <div key={pickup.id} className={styles.pickupCard}>
-              <div className={styles.pickupHeader}>
+              <div className={styles.cardHeader}>
                 <h3 className={styles.restaurantName}>{pickup.restaurantName}</h3>
-                <span className={`${styles.status} ${styles[pickup.status.toLowerCase()]}`}>
+                <span className={`${styles.statusBadge} ${styles[`status${pickup.status}`]}`}>
                   {pickup.status}
                 </span>
               </div>
-              <div className={styles.pickupDetails}>
-                <div className={styles.detail}>
-                  <span className={styles.label}>Date:</span>
+              <div className={styles.cardContent}>
+                <div className={styles.cardDetail}>
+                  <span className={styles.cardDetailLabel}>Date:</span>
                   <span>{pickup.date}</span>
                 </div>
-                <div className={styles.detail}>
-                  <span className={styles.label}>Time:</span>
+                <div className={styles.cardDetail}>
+                  <span className={styles.cardDetailLabel}>Time:</span>
                   <span>{pickup.time}</span>
                 </div>
-                <div className={styles.detail}>
-                  <span className={styles.label}>Items:</span>
+                <div className={styles.cardDetail}>
+                  <span className={styles.cardDetailLabel}>Items:</span>
                   <span>{pickup.items}</span>
                 </div>
-                <div className={styles.detail}>
-                  <span className={styles.label}>Address:</span>
+                <div className={styles.cardDetail}>
+                  <span className={styles.cardDetailLabel}>Address:</span>
                   <span>{pickup.address}</span>
                 </div>
               </div>
-              <div className={styles.actions}>
+              <div className={styles.cardActions}>
                 <button 
-                  className={styles.actionButton}
+                  className={`${styles.actionButton} ${styles.deleteButton}`}
                   onClick={() => handleCancelPickup(pickup.id)}
                 >
                   Cancel

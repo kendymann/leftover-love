@@ -1,66 +1,111 @@
+/* Leftover Love - Scheduled Pickups */
 .scheduledPage {
-  padding: 1rem;
-  background: linear-gradient(135deg, #F5F7F5 0%, #E8EFE8 100%);
   min-height: 100vh;
+  background: linear-gradient(135deg, #F0F8F0, #E0F0E0);
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
 
+/* Hero Header */
 .header {
+  background: linear-gradient(135deg, #2E8B57, #3CB371);
+  margin: 0;
+  padding: 3rem 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(46, 139, 87, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, #7C9A7C 0%, #8DAB8D 100%);
-  border-radius: 16px;
-  color: white;
-  box-shadow: 0 12px 32px rgba(124, 154, 124, 0.3);
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(135deg, #f8fffe 0%, #f0f9f7 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 2;
+  flex: 1;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(45deg, #FFFFFF, #F0F8F0);
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #e8f5f0 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  letter-spacing: -1px;
 }
 
 .addButton {
-  background: rgba(255, 255, 255, 0.9);
-  color: #2C432C;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  color: #2d5d3d;
   padding: 1rem 2rem;
   border: none;
-  border-radius: 12px;
-  font-weight: 600;
+  border-radius: 16px;
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .addButton:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   background: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .pickupsList {
   display: grid;
   gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
 }
 
 .pickupCard {
   background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease-in-out;
+  border-radius: 24px;
+  border: 1px solid rgba(45, 93, 61, 0.1);
   position: relative;
   overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 40px rgba(45, 93, 61, 0.1);
 }
 
 .pickupCard::before {
@@ -69,216 +114,217 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #7C9A7C, #8DAB8D);
+  height: 6px;
+  background: linear-gradient(90deg, #2d5d3d 0%, #4a7c59 50%, #6b9b73 100%);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.6s ease;
+}
+
+.pickupCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(45, 93, 61, 0.03) 0%, rgba(107, 155, 115, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.pickupCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(45, 93, 61, 0.2);
+  border-color: rgba(45, 93, 61, 0.2);
 }
 
 .pickupCard:hover::before {
   transform: scaleX(1);
 }
 
-.pickupCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(118, 143, 118, 0.2);
+.pickupCard:hover::after {
+  opacity: 1;
 }
 
-.pickupHeader {
+.cardHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .charityName {
-  font-size: 1.4rem;
-  color: #2C432C;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d5d3d;
+  margin: 0;
+  background: linear-gradient(135deg, #2d5d3d 0%, #4a7c59 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.status {
-  padding: 0.75rem 1.5rem;
+.statusBadge {
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
 }
 
-.confirmed {
-  background: linear-gradient(135deg, #D4EDDA, #C3E6CB);
-  color: #155724;
+.statusConfirmed {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
-.pending {
-  background: linear-gradient(135deg, #FFF3CD, #FFECB5);
-  color: #664D03;
+.statusPending {
+  background: rgba(251, 191, 36, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
-.pickupDetails {
-  display: grid;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+.cardContent {
+  position: relative;
+  z-index: 2;
 }
 
-.detail {
+.cardDetail {
   display: flex;
-  gap: 0.5rem;
-  color: #2C432C;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #4a7c59;
   font-weight: 500;
 }
 
-.label {
-  color: #2C432C;
-  font-weight: 600;
-  min-width: 60px;
+.cardDetailLabel {
+  font-weight: 700;
+  color: #2d5d3d;
+  margin-right: 0.75rem;
+  min-width: 80px;
 }
 
-.actions {
+.cardActions {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .actionButton {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  background-color: #E8EFE8;
-  color: #2C432C;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
 }
 
-.actionButton:hover {
-  background-color: #D1E0D1;
+.editButton {
+  background: linear-gradient(135deg, #2d5d3d, #4a7c59);
+  color: white;
 }
 
-.cancelButton {
-  background-color: #FFE5E5;
-  color: #CC0000;
+.editButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(45, 93, 61, 0.3);
 }
 
-.cancelButton:hover {
-  background-color: #FFD1D1;
+.deleteButton {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
 }
 
-/* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
+.deleteButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
 }
 
-.modalContent {
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 90%;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
-}
-
-.modalContent h2 {
-  color: #2C432C;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: #4a7c59;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
-.formGroup {
-  margin-bottom: 1.5rem;
-}
-
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.input {
-  width: 100%;
-  padding: 0.75rem;
-  background: white;
-  border: 1.5px solid #BED0BE;
-  border-radius: 8px;
-  color: #2C432C;
-  font-size: 1rem;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.input:focus {
-  border-color: #7C9A7C;
-  box-shadow: 0 0 0 3px rgba(124, 154, 124, 0.2);
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-.modalActions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-/* Loading State */
-.loading {
+.emptyState {
   text-align: center;
-  padding: 2rem;
-  color: #5C715C;
-  font-size: 1.1rem;
-}
-
-/* Error State */
-.errorContainer {
-  text-align: center;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 4rem 2rem;
+  color: #4a7c59;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
   margin: 2rem auto;
-  max-width: 500px;
+  max-width: 600px;
+  box-shadow: 0 10px 40px rgba(45, 93, 61, 0.1);
 }
 
-.errorMessage {
-  color: #CC0000;
+.emptyState h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d5d3d;
   margin-bottom: 1rem;
 }
 
-.retryButton {
-  background-color: #7C9A7C;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+.emptyState p {
+  font-size: 1.1rem;
+  margin: 0;
 }
 
-.retryButton:hover {
-  background-color: #8DAB8D;
-  transform: translateY(-1px);
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .pickupsList {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .cardActions {
+    flex-direction: column;
+  }
+  
+  .actionButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .charityName {
+    font-size: 1.25rem;
+  }
 }
 
 /* Special styling for date and time inputs */

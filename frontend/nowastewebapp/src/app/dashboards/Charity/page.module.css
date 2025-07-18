@@ -1,23 +1,23 @@
 /* Leftover Love - Charity Dashboard */
 .dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fffe 0%, #f0f9f7 50%, #e8f5f0 100%);
+  background: linear-gradient(135deg, #F5F7F5, #E8EFE8);
   padding: 0;
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: "Inter", sans-serif;
   position: relative;
   overflow-x: hidden;
 }
 
 /* Hero Header */
 .header {
-  background: linear-gradient(135deg, #2d5d3d 0%, #4a7c59 50%, #6b9b73 100%);
+  background: linear-gradient(135deg, #228B22, #2E8B57);
   margin: 0;
   padding: 3rem 2rem;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(45, 93, 61, 0.3);
+  box-shadow: 0 20px 60px rgba(34, 139, 34, 0.3);
 }
 
 .header::before {
@@ -39,7 +39,7 @@
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(135deg, #f8fffe 0%, #f0f9f7 100%);
+  background: linear-gradient(135deg, #F5F7F5 0%, #E8EFE8 100%);
   border-radius: 20px 20px 0 0;
 }
 
@@ -50,7 +50,8 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
 }
 
 .brandImage {
@@ -66,13 +67,10 @@
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin: 0 0 1rem 0;
-  background: linear-gradient(135deg, #ffffff 0%, #e8f5f0 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0;
+  color: #FFFFFF;
   text-shadow: 0 4px 20px rgba(0,0,0,0.1);
   letter-spacing: -2px;
 }
@@ -115,7 +113,7 @@
   left: 0;
   right: 0;
   height: 6px;
-  background: linear-gradient(90deg, #2d5d3d 0%, #4a7c59 50%, #6b9b73 100%);
+  background: linear-gradient(90deg, #228B22 0%, #2E8B57 50%, #32CD32 100%);
   transform: scaleX(0);
   transition: transform 0.6s ease;
 }
@@ -124,7 +122,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(45, 93, 61, 0.05) 0%, rgba(107, 155, 115, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(34, 139, 34, 0.05) 0%, rgba(50, 205, 50, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -148,7 +146,7 @@
   font-weight: 900;
   margin-bottom: 0.5rem;
   line-height: 1;
-  background: linear-gradient(135deg, #2d5d3d 0%, #4a7c59 50%, #6b9b73 100%);
+  background: linear-gradient(135deg, #228B22 0%, #2E8B57 50%, #32CD32 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -158,7 +156,7 @@
 
 .metricLabel {
   font-size: 1rem;
-  color: #4a7c59;
+  color: #2E8B57;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -176,11 +174,11 @@
 .sectionTitle {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #2d5d3d;
+  color: #2C432C;
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
-  background: linear-gradient(135deg, #2d5d3d 0%, #4a7c59 100%);
+  background: linear-gradient(135deg, #228B22 0%, #2E8B57 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -194,7 +192,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #2d5d3d, #6b9b73);
+  background: linear-gradient(90deg, #228B22, #32CD32);
   border-radius: 2px;
 }
 

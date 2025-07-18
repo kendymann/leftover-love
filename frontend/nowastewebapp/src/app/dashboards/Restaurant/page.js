@@ -117,21 +117,7 @@ export default function RestaurantDashboard() {
       {/* Header */}
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <h1 className={styles.title}>Welcome Back, Food Partner</h1>
-          <p className={styles.subtitle}>Your generosity is transforming our community, one meal at a time</p>
-        </div>
-        <div className={styles.brandImage}>
-          <Image
-            src="/donations.jpg"
-            alt="Food Partnership"
-            width={120}
-            height={120}
-            style={{ 
-              objectFit: 'cover', 
-              borderRadius: '50%',
-              border: '3px solid rgba(255, 255, 255, 0.3)'
-            }}
-          />
+          <h1 className={styles.title}>Restaurant Dashboard</h1>
         </div>
       </div>
       
