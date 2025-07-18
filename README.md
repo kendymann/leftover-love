@@ -12,15 +12,17 @@ Leftover Love started as a hackathon project that was too impactful for us to ju
 - **Impact Tracking**: Monitor environmental impact and community contribution
 - **Pickup Coordination**: Schedule and manage food pickup with local charities
 - **Analytics Dashboard**: Track donations, food saved, and people helped
-
+![Restaurant Dashboard](restaurantexampledash.png)
 ### For Charities
 - **Food Discovery**: Browse available food donations from local restaurants
 - **Pickup Scheduling**: Coordinate pickup times that work for your organization
 - **Impact Reporting**: Track received donations and community impact
 - **Profile Management**: Maintain charity information and contact details
-
+![Charity Dashboard](Charityexampledash.png)
 ### Platform Features
 - **Real-time Updates**: Live food availability and pickup status
+- **Ratings on both ends**: Both parties can rate their experience with each other
+- **Real impact metrics**: Shows the amount of love the organization has given through metrics
 - **Secure Authentication**: JWT-based authentication for both user types
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **RESTful API**: Complete API documentation with Swagger/OpenAPI
