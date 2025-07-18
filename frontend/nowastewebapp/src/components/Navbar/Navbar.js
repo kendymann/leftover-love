@@ -10,8 +10,7 @@ const Navbar = ({ userType }) => {
 
   const navItems = [
     { name: 'Dashboard', path: basePath },
-    { name: 'Scheduled Pickups', path: `${basePath}/scheduled` },
-    { name: 'Completed Pickups', path: `${basePath}/completed` },
+    { name: 'Pickups', path: `${basePath}/pickups` },
   ];
 
   const handleLogout = () => {

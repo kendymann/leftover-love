@@ -1,0 +1,341 @@
+/* Leftover Love - Restaurant Pickups Page - Landing Page Inspired */
+.pickupsPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F5F7F5, #E8EFE8);
+  font-family: "Inter", sans-serif;
+  color: #2C432C;
+}
+
+/* Hero Header - Landing Page Style with Action Button */
+.header {
+  width: 100%;
+  padding: 3rem 2rem 2rem;
+  background: linear-gradient(135deg, #228B22, #2E8B57);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.headerContent {
+  flex: 1;
+  min-width: 300px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.addButton {
+  background: #FFFFFF;
+  color: #228B22;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.addButton:hover {
+  background: #F8F9FA;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tab Navigation */
+.tabContainer {
+  background: linear-gradient(135deg, #228B22, #2E8B57);
+  padding: 0 2rem 2rem;
+}
+
+.tabNavigation {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tabButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.tabButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.tabButton.active {
+  background: #FFFFFF;
+  color: #228B22;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Container */
+.contentContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pickupsList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pickupCard {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #E0E0E0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pickupCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.charityName {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2C432C;
+  margin: 0;
+}
+
+.statusBadge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusConfirmed {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.statusPending {
+  background: rgba(251, 191, 36, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.completedBadge {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardContent {
+  margin-bottom: 1rem;
+}
+
+.cardDetail {
+  display: flex;
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.cardDetailLabel {
+  font-weight: 600;
+  color: #2C432C;
+  min-width: 120px;
+}
+
+.cardActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.actionButton {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.editButton {
+  background: #228B22;
+  color: white;
+}
+
+.editButton:hover {
+  background: #2E8B57;
+  transform: translateY(-1px);
+}
+
+.deleteButton {
+  background: #dc2626;
+  color: white;
+}
+
+.deleteButton:hover {
+  background: #ef4444;
+  transform: translateY(-1px);
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emptyState h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2C432C;
+  margin-bottom: 0.5rem;
+}
+
+.emptyState p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 3rem;
+  background: #FFFFFF;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 600px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
+}
+
+.errorMessage {
+  color: #dc2626;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.retryButton {
+  background: #228B22;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retryButton:hover {
+  background: #2E8B57;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .addButton {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .tabContainer {
+    padding: 0 1rem 1.5rem;
+  }
+  
+  .tabNavigation {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .tabButton {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .contentContainer {
+    padding: 1.5rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .cardActions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .cardDetailLabel {
+    min-width: 100px;
+  }
+}

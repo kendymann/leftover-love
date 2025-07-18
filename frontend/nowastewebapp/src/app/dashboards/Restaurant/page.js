@@ -1,62 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import styles from './page.module.css';
 import { buildApiUrl } from '@/utils/config';
-
-// Function to fetch dashboard data
-async function fetchDashboardData() {
-  try {
-    const token = localStorage.getItem('token');
-    const response = await fetch(buildApiUrl('restaurants/stats'), {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch dashboard data');
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching dashboard data:', error);
-    // Return mock data if fetch fails
-    return {
-      stats: {
-        activePickups: 5,
-        totalDonations: 127,
-        foodSaved: 534,
-        impactScore: 89
-      },
-      recentActivity: [
-        {
-          id: 1,
-          type: 'pickup_scheduled',
-          message: 'New pickup scheduled with Local Food Bank',
-          scheduledFor: '2024-03-20T14:00:00Z',
-          items: 'Bread (5kg), Vegetables (8kg)',
-          timestamp: '2024-03-15T14:30:00Z'
-        },
-        {
-          id: 2,
-          type: 'pickup_completed',
-          message: 'Pickup completed by Community Shelter',
-          foodSaved: '12kg',
-          peopleHelped: 30,
-          timestamp: '2024-03-15T13:45:00Z'
-        },
-        {
-          id: 3,
-          type: 'impact_milestone',
-          message: 'Achievement: 500kg of food saved!',
-          timestamp: '2024-03-15T12:00:00Z'
-        }
-      ]
-    };
-  }
-}
 
 export default function RestaurantDashboard() {
   const [dashboardData, setDashboardData] = useState({
@@ -68,24 +13,118 @@ export default function RestaurantDashboard() {
     },
     recentActivity: []
   });
+  const [offers, setOffers] = useState([]);
+  const [newOfferData, setNewOfferData] = useState({
+    title: '',
+    description: '',
+    quantity: '',
+    expiry_date: '',
+    pickup_time: ''
+  });
+  const [showOfferForm, setShowOfferForm] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [offerLoading, setOfferLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     loadDashboardData();
+    loadOffers();
   }, []);
 
   async function loadDashboardData() {
     try {
       setIsLoading(true);
-      const data = await fetchDashboardData();
-      setDashboardData(data);
+      const token = localStorage.getItem('token');
+      const response = await fetch(buildApiUrl('restaurants/stats'), {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setDashboardData(data);
+      } else {
+        // Fallback data
+        setDashboardData({
+          stats: {
+            activePickups: 5,
+            totalDonations: 127,
+            foodSaved: 534,
+            impactScore: 89
+          },
+          recentActivity: [
+            {
+              id: 1,
+              message: 'New pickup scheduled with Local Food Bank',
+              timestamp: new Date().toISOString()
+            }
+          ]
+        });
+      }
     } catch (err) {
       setError(err.message);
     } finally {
       setIsLoading(false);
     }
   }
+
+  async function loadOffers() {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(buildApiUrl('offers/restaurant'), {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setOffers(data);
+      }
+    } catch (error) {
+      console.error('Error loading offers:', error);
+    }
+  }
+
+  const handleCreateOffer = async (e) => {
+    e.preventDefault();
+    setOfferLoading(true);
+    
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(buildApiUrl('offers'), {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newOfferData)
+      });
+
+      if (response.ok) {
+        const newOffer = await response.json();
+        setOffers([newOffer, ...offers]);
+        setNewOfferData({
+          title: '',
+          description: '',
+          quantity: '',
+          expiry_date: '',
+          pickup_time: ''
+        });
+        setShowOfferForm(false);
+      } else {
+        throw new Error('Failed to create offer');
+      }
+    } catch (error) {
+      console.error('Error creating offer:', error);
+      setError('Failed to create offer');
+    } finally {
+      setOfferLoading(false);
+    }
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -150,6 +189,97 @@ export default function RestaurantDashboard() {
           </div>
           <div className={styles.metricLabel}>Impact Score</div>
         </div>
+      </div>
+
+      {/* Offers Section */}
+      <div className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Your Offers</h2>
+          <button 
+            className={styles.createButton}
+            onClick={() => setShowOfferForm(!showOfferForm)}
+          >
+            {showOfferForm ? 'Cancel' : 'Create Offer'}
+          </button>
+        </div>
+
+        {showOfferForm && (
+          <form onSubmit={handleCreateOffer} className={styles.offerForm}>
+            <div className={styles.formRow}>
+              <input
+                type="text"
+                placeholder="Offer title"
+                value={newOfferData.title}
+                onChange={(e) => setNewOfferData({...newOfferData, title: e.target.value})}
+                required
+                className={styles.input}
+              />
+              <input
+                type="number"
+                placeholder="Quantity"
+                value={newOfferData.quantity}
+                onChange={(e) => setNewOfferData({...newOfferData, quantity: e.target.value})}
+                required
+                className={styles.input}
+              />
+            </div>
+            <textarea
+              placeholder="Description"
+              value={newOfferData.description}
+              onChange={(e) => setNewOfferData({...newOfferData, description: e.target.value})}
+              required
+              className={styles.textarea}
+            />
+            <div className={styles.formRow}>
+              <input
+                type="datetime-local"
+                placeholder="Expiry date"
+                value={newOfferData.expiry_date}
+                onChange={(e) => setNewOfferData({...newOfferData, expiry_date: e.target.value})}
+                required
+                className={styles.input}
+              />
+              <input
+                type="time"
+                placeholder="Pickup time"
+                value={newOfferData.pickup_time}
+                onChange={(e) => setNewOfferData({...newOfferData, pickup_time: e.target.value})}
+                required
+                className={styles.input}
+              />
+            </div>
+            <button 
+              type="submit" 
+              disabled={offerLoading}
+              className={styles.submitButton}
+            >
+              {offerLoading ? 'Creating...' : 'Create Offer'}
+            </button>
+          </form>
+        )}
+
+        <div className={styles.offersGrid}>
+          {offers.map((offer) => (
+            <div key={offer.id} className={styles.offerCard}>
+              <div className={styles.offerHeader}>
+                <h3 className={styles.offerTitle}>{offer.title}</h3>
+                <span className={styles.offerStatus}>{offer.status}</span>
+              </div>
+              <p className={styles.offerDescription}>{offer.description}</p>
+              <div className={styles.offerDetails}>
+                <span>Quantity: {offer.quantity}</span>
+                <span>Expires: {new Date(offer.expiry_date).toLocaleDateString()}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {offers.length === 0 && !showOfferForm && (
+          <div className={styles.emptyState}>
+            <h3>No offers yet</h3>
+            <p>Create your first offer to help feed those in need</p>
+          </div>
+        )}
       </div>
 
       {/* Recent Activity */}

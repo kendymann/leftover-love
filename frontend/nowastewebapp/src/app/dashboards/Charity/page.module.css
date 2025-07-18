@@ -1,23 +1,22 @@
-/* Leftover Love - Charity Dashboard */
+/* Leftover Love - Charity Dashboard - Strava Inspired */
 .dashboard {
   min-height: 100vh;
   background: linear-gradient(135deg, #F5F7F5, #E8EFE8);
   padding: 0;
   margin: 0;
   font-family: "Inter", sans-serif;
-  position: relative;
-  overflow-x: hidden;
+  color: #2C432C;
 }
 
-/* Hero Header */
+/* Hero Header - Strava Style */
 .header {
+  width: 100%;
+  text-align: center;
+  padding: 4rem 2rem;
   background: linear-gradient(135deg, #228B22, #2E8B57);
-  margin: 0;
-  padding: 3rem 2rem;
-  color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(34, 139, 34, 0.3);
+  color: white;
 }
 
 .header::before {
@@ -44,239 +43,214 @@
 }
 
 .headerContent {
+  max-width: 800px;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.brandImage {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-
-.brandImage:hover {
-  transform: scale(1.05) rotate(3deg);
 }
 
 .title {
-  font-size: 4rem;
-  font-weight: 900;
-  margin: 0;
+  font-size: 3.5rem;
+  font-weight: bold;
   color: #FFFFFF;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  letter-spacing: -2px;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
-  font-size: 1.4rem;
-  font-weight: 400;
-  opacity: 0.9;
-  margin: 0;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Stats Grid - Exciting & Modern */
+/* Stats Grid - Clean Strava Style */
 .metricsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
   margin: 3rem auto;
   padding: 0 2rem;
 }
 
 .metric {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 2rem;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
   text-align: center;
-  border: 1px solid rgba(45, 93, 61, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  cursor: pointer;
-}
-
-.metric::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, #228B22 0%, #2E8B57 50%, #32CD32 100%);
-  transform: scaleX(0);
-  transition: transform 0.6s ease;
-}
-
-.metric::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(34, 139, 34, 0.05) 0%, rgba(50, 205, 50, 0.05) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  border: 1px solid #E0E0E0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .metric:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(45, 93, 61, 0.25);
-  border-color: rgba(45, 93, 61, 0.3);
-}
-
-.metric:hover::before {
-  transform: scaleX(1);
-}
-
-.metric:hover::after {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .metricValue {
-  font-size: 4rem;
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #228B22;
   margin-bottom: 0.5rem;
   line-height: 1;
-  background: linear-gradient(135deg, #228B22 0%, #2E8B57 50%, #32CD32 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  z-index: 2;
 }
 
 .metricLabel {
   font-size: 1rem;
-  color: #2E8B57;
+  color: #666;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 2;
+  letter-spacing: 0.5px;
 }
 
-/* Activity Section - Sleek & Cool */
-.activitySection {
-  max-width: 1200px;
-  margin: 4rem auto;
+/* Available Offers Section - Strava Card Style */
+.offersSection {
+  max-width: 1000px;
+  margin: 3rem auto;
   padding: 0 2rem;
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: bold;
   color: #2C432C;
   margin-bottom: 2rem;
-  text-align: center;
-  position: relative;
-  background: linear-gradient(135deg, #228B22 0%, #2E8B57 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-align: left;
 }
 
-.sectionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #228B22, #32CD32);
-  border-radius: 2px;
+.offersList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.offerCard {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #E0E0E0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.offerCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.offerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.restaurantName {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2C432C;
+  margin: 0;
+}
+
+.claimButton {
+  background: #228B22;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.claimButton:hover {
+  background: #2E8B57;
+  transform: translateY(-2px);
+}
+
+.offerDetails {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.offerDetail {
+  display: flex;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.offerLabel {
+  font-weight: 600;
+  color: #2C432C;
+  min-width: 80px;
+}
+
+/* Activity Section - Clean Style */
+.activitySection {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 2rem;
 }
 
 .activityList {
   display: grid;
-  gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 2rem;
-  border: 1px solid rgba(45, 93, 61, 0.1);
-  box-shadow: 0 10px 40px rgba(45, 93, 61, 0.1);
+  gap: 1rem;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .activityItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  border-left: 4px solid transparent;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.activityItem::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(45, 93, 61, 0.03) 0%, rgba(107, 155, 115, 0.03) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  padding: 1rem;
+  background: #F8F9FA;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .activityItem:hover {
-  transform: translateX(8px);
-  border-left-color: #4a7c59;
-  box-shadow: 0 10px 30px rgba(45, 93, 61, 0.15);
-}
-
-.activityItem:hover::before {
-  opacity: 1;
+  background: #E8F5E8;
 }
 
 .activityContent {
   flex: 1;
-  position: relative;
-  z-index: 2;
 }
 
 .activityMessage {
   font-weight: 600;
-  color: #2d5d3d;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  color: #2C432C;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
 }
 
 .activityDetails {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .activityDetail {
-  font-size: 0.9rem;
-  color: #4a7c59;
-  background: rgba(107, 155, 115, 0.1);
-  padding: 0.25rem 0.75rem;
-  border-radius: 8px;
-  font-weight: 500;
+  font-size: 0.875rem;
+  color: #666;
+  background: #E0E0E0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
 }
 
 .activityTime {
-  font-size: 0.85rem;
-  color: #6b9b73;
-  font-weight: 600;
-  background: rgba(45, 93, 61, 0.05);
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  white-space: nowrap;
-  position: relative;
-  z-index: 2;
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 500;
 }
 
 /* Loading, Error States & Animations */

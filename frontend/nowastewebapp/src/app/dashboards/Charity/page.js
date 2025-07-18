@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { buildApiUrl } from '@/utils/config';
 
-// Function to fetch charity dashboard data
+// Function to fetch charity dashboard data including available offers
 async function fetchDashboardData() {
   try {
     const token = localStorage.getItem('token');
@@ -30,6 +30,38 @@ async function fetchDashboardData() {
         foodCollected: 423,
         peopleHelped: 1240
       },
+      availableOffers: [
+        {
+          id: 1,
+          restaurantName: 'Fresh Bites Restaurant',
+          restaurantAddress: '123 Main St, City',
+          items: 'Bread (3kg), Vegetables (5kg), Prepared Meals (8 portions)',
+          availableDate: '2024-03-16',
+          availableTime: '14:00',
+          preferredPickupTime: '2:00 PM - 4:00 PM',
+          expiresAt: '2024-03-16T18:00:00Z'
+        },
+        {
+          id: 2,
+          restaurantName: 'Green Kitchen',
+          restaurantAddress: '456 Oak Ave, City',
+          items: 'Dairy Products (2kg), Fruits (4kg), Pastries (12 items)',
+          availableDate: '2024-03-16',
+          availableTime: '15:30',
+          preferredPickupTime: '3:00 PM - 5:00 PM',
+          expiresAt: '2024-03-16T19:00:00Z'
+        },
+        {
+          id: 3,
+          restaurantName: 'Italian Corner',
+          restaurantAddress: '789 Pine St, City',
+          items: 'Pasta (4kg), Sauce (2L), Bread (2kg)',
+          availableDate: '2024-03-16',
+          availableTime: '16:00',
+          preferredPickupTime: '4:00 PM - 6:00 PM',
+          expiresAt: '2024-03-16T20:00:00Z'
+        }
+      ],
       recentActivity: [
         {
           id: 1,
@@ -52,28 +84,31 @@ async function fetchDashboardData() {
           message: 'Milestone: Helped feed 1000+ people this month!',
           timestamp: '2024-03-15T12:00:00Z'
         }
-      ],
-      availablePickups: [
-        {
-          id: 1,
-          restaurantName: 'Fresh Bites Restaurant',
-          restaurantAddress: '123 Main St, City',
-          items: 'Bread (3kg), Vegetables (5kg)',
-          availableDate: '2024-03-16',
-          availableTime: '14:00',
-          preferredPickupTime: '2:00 PM - 4:00 PM'
-        },
-        {
-          id: 2,
-          restaurantName: 'Green Kitchen',
-          restaurantAddress: '456 Oak Ave, City',
-          items: 'Prepared Meals (8 portions), Fruits (4kg)',
-          availableDate: '2024-03-16',
-          availableTime: '15:30',
-          preferredPickupTime: '3:00 PM - 5:00 PM'
-        }
       ]
     };
+  }
+}
+
+// Function to claim an offer
+async function claimOffer(offerId) {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(buildApiUrl(`charities/claim-offer/${offerId}`), {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to claim offer');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error claiming offer:', error);
+    throw error;
   }
 }
 
@@ -85,8 +120,8 @@ export default function CharityDashboard() {
       foodCollected: 0,
       peopleHelped: 0
     },
-    recentActivity: [],
-    availablePickups: []
+    availableOffers: [],
+    recentActivity: []
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -107,6 +142,32 @@ export default function CharityDashboard() {
     }
   }
 
+  const handleClaimOffer = async (offerId) => {
+    try {
+      await claimOffer(offerId);
+      // Remove the claimed offer from the list
+      setDashboardData(prev => ({
+        ...prev,
+        availableOffers: prev.availableOffers.filter(offer => offer.id !== offerId)
+      }));
+      // Refresh dashboard data to update stats
+      loadDashboardData();
+    } catch (err) {
+      setError('Failed to claim offer');
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+
   if (error) {
     return (
       <div className={styles.errorContainer}>
@@ -121,23 +182,15 @@ export default function CharityDashboard() {
     );
   }
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    });
-  };
-
   return (
     <div className={styles.dashboard}>
       {/* Header */}
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <h1 className={styles.title}>Charity Dashboard</h1>
+          <p className={styles.subtitle}>
+            Connect with restaurants, collect surplus food, and make a difference in your community.
+          </p>
         </div>
       </div>
       
@@ -147,7 +200,7 @@ export default function CharityDashboard() {
           <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.availablePickups}
           </div>
-          <div className={styles.metricLabel}>Available Pickups</div>
+          <div className={styles.metricLabel}>Available Offers</div>
         </div>
         
         <div className={styles.metric}>
@@ -161,7 +214,7 @@ export default function CharityDashboard() {
           <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.foodCollected}kg
           </div>
-          <div className={styles.metricLabel}>Food Rescued</div>
+          <div className={styles.metricLabel}>Food Collected</div>
         </div>
         
         <div className={styles.metric}>
@@ -169,6 +222,52 @@ export default function CharityDashboard() {
             {isLoading ? '...' : dashboardData.stats.peopleHelped}
           </div>
           <div className={styles.metricLabel}>People Helped</div>
+        </div>
+      </div>
+
+      {/* Available Offers Section */}
+      <div className={styles.offersSection}>
+        <h2 className={styles.sectionTitle}>Available Food Offers</h2>
+        <div className={styles.offersList}>
+          {isLoading ? (
+            <div className={styles.loading}>Loading available offers...</div>
+          ) : dashboardData.availableOffers && dashboardData.availableOffers.length === 0 ? (
+            <div className={styles.emptyState}>
+              <p>No food offers available at the moment. Check back later!</p>
+            </div>
+          ) : (
+            dashboardData.availableOffers && dashboardData.availableOffers.map((offer) => (
+              <div key={offer.id} className={styles.offerCard}>
+                <div className={styles.offerHeader}>
+                  <h3 className={styles.restaurantName}>{offer.restaurantName}</h3>
+                  <button 
+                    className={styles.claimButton}
+                    onClick={() => handleClaimOffer(offer.id)}
+                  >
+                    Claim Offer
+                  </button>
+                </div>
+                <div className={styles.offerDetails}>
+                  <div className={styles.offerDetail}>
+                    <span className={styles.offerLabel}>Items:</span>
+                    <span>{offer.items}</span>
+                  </div>
+                  <div className={styles.offerDetail}>
+                    <span className={styles.offerLabel}>Address:</span>
+                    <span>{offer.restaurantAddress}</span>
+                  </div>
+                  <div className={styles.offerDetail}>
+                    <span className={styles.offerLabel}>Pickup:</span>
+                    <span>{offer.preferredPickupTime} on {offer.availableDate}</span>
+                  </div>
+                  <div className={styles.offerDetail}>
+                    <span className={styles.offerLabel}>Expires:</span>
+                    <span>{formatDate(offer.expiresAt)}</span>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
