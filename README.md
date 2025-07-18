@@ -1,8 +1,8 @@
 # Leftover Love
 
-**Sharing More Than Just Food**
+**What is leftover love?**
 
-Leftover Love is a social impact platform that connects restaurants with surplus food to charities and local food banks. Our mission is to reduce food waste while helping communities in need, turning surplus into smiles and waste into warmth.
+Leftover Love started as a hackathon project that was too impactful for us to just let it sit. It is a social impact platform that connects restaurants with surplus food to charities and local food banks. Our mission is to reduce food waste while helping communities in need, turning surplus into smiles and waste into warmth.
 
 ## Features
 
