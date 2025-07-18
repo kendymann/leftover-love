@@ -1,7 +1,13 @@
 /* Leftover Love - Charity Dashboard - Strava Inspired */
 .dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #F5F7F5, #E8EFE8);
+  background: 
+    linear-gradient(135deg, rgba(245, 247, 245, 0.95), rgba(232, 239, 232, 0.95)),
+    url('/charitydashboardbackground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   padding: 0;
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -13,7 +19,7 @@
   width: 100%;
   text-align: center;
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #228B22, #2E8B57);
+  background: linear-gradient(135deg, #7C9A7C, #8FAF8F);
   position: relative;
   overflow: hidden;
   color: white;
@@ -95,7 +101,7 @@
 .metricValue {
   font-size: 3rem;
   font-weight: bold;
-  color: #228B22;
+  color: #7C9A7C;
   margin-bottom: 0.5rem;
   line-height: 1;
 }
@@ -157,7 +163,7 @@
 }
 
 .claimButton {
-  background: #228B22;
+  background: #7C9A7C;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -168,7 +174,7 @@
 }
 
 .claimButton:hover {
-  background: #2E8B57;
+  background: #8FAF8F;
   transform: translateY(-2px);
 }
 

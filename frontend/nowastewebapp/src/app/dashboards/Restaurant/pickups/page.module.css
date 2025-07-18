@@ -1,7 +1,13 @@
 /* Leftover Love - Restaurant Pickups Page - Landing Page Inspired */
 .pickupsPage {
   min-height: 100vh;
-  background: linear-gradient(135deg, #F5F7F5, #E8EFE8);
+  background: 
+    linear-gradient(135deg, rgba(245, 247, 245, 0.95), rgba(232, 239, 232, 0.95)),
+    url('/restaurantdashboardbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: "Inter", sans-serif;
   color: #2C432C;
 }
@@ -10,7 +16,7 @@
 .header {
   width: 100%;
   padding: 3rem 2rem 2rem;
-  background: linear-gradient(135deg, #228B22, #2E8B57);
+  background: linear-gradient(135deg, #7C9A7C, #8FAF8F);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -42,7 +48,7 @@
 
 .addButton {
   background: #FFFFFF;
-  color: #228B22;
+  color: #7C9A7C;
   padding: 1rem 2rem;
   border: none;
   border-radius: 50px;
@@ -61,7 +67,7 @@
 
 /* Tab Navigation */
 .tabContainer {
-  background: linear-gradient(135deg, #228B22, #2E8B57);
+  background: linear-gradient(135deg, #7C9A7C, #8FAF8F);
   padding: 0 2rem 2rem;
 }
 
@@ -90,7 +96,7 @@
 
 .tabButton.active {
   background: #FFFFFF;
-  color: #228B22;
+  color: #7C9A7C;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -201,12 +207,12 @@
 }
 
 .editButton {
-  background: #228B22;
+  background: #7C9A7C;
   color: white;
 }
 
 .editButton:hover {
-  background: #2E8B57;
+  background: #8FAF8F;
   transform: translateY(-1px);
 }
 
@@ -268,7 +274,7 @@
 }
 
 .retryButton {
-  background: #228B22;
+  background: #7C9A7C;
   color: white;
   padding: 0.75rem 2rem;
   border: none;
@@ -279,7 +285,7 @@
 }
 
 .retryButton:hover {
-  background: #2E8B57;
+  background: #8FAF8F;
   transform: translateY(-1px);
 }
 
