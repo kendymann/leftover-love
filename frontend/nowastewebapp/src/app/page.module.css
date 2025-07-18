@@ -63,71 +63,42 @@
   font-weight: 600 !important;
 }
 
-/* Hero Section - Strava Style with 3-column layout */
+/* Hero Section - Full Strava Style Layout */
 .hero {
-  min-height: 100vh;
-  padding: 6rem 0 2rem;
-  background: linear-gradient(135deg, #f8fffe 0%, #f1f8f6 100%);
+  height: 100vh;
   display: flex;
-  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .heroLayout {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr 500px 1fr;
+  grid-template-columns: 1fr 480px 1fr;
   gap: 0;
-  align-items: center;
-  min-height: 80vh;
 }
 
-/* Left and Right Image Areas - Full Width, No Borders */
+/* Left and Right Image Areas - Full Height, Edge to Edge */
 .heroImageLeft,
 .heroImageRight {
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-.imageContainer {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+/* Center Content */
+.heroCenter {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
-  position: relative;
-}
-
-.imageContainer span {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-}
-
-.imageContainer p {
-  font-size: 1rem;
-  color: var(--primary-dark);
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-/* Center Content */
-.heroCenter {
-  text-align: center;
-  padding: 3rem 2rem;
+  padding: 0 3rem;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(124, 154, 124, 0.1);
-  margin: 0 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 .title {
@@ -558,20 +529,26 @@
     font-size: 0.9rem;
   }
 
+  .hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .heroLayout {
     grid-template-columns: 1fr;
-    gap: 0;
-    min-height: auto;
-    padding: 0;
+    height: auto;
   }
   
   .heroImageLeft,
   .heroImageRight {
     height: 300px;
-    position: relative;
+    display: none; /* Hide side images on mobile for cleaner look */
   }
   
   .heroCenter {
+    height: auto;
+    min-height: 100vh;
+    padding: 6rem 1.5rem 3rem;
     padding: 2rem 1.5rem;
     margin: 2rem 1rem;
     border-radius: 12px;

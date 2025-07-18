@@ -72,6 +72,7 @@ export default function RestaurantScheduledPickups() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showScheduleForm, setShowScheduleForm] = useState(false);
+  const [editingPickup, setEditingPickup] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     quantity: '',
@@ -107,23 +108,107 @@ export default function RestaurantScheduledPickups() {
     }));
   };
 
+  const handleEdit = (pickup) => {
+    setEditingPickup(pickup.id);
+    setFormData({
+      name: pickup.items,
+      quantity: '',
+      quantity_unit: 'kg',
+      expiry_date: '',
+      available_date: pickup.date,
+      available_time: pickup.time,
+      description: '',
+      storage_instructions: ''
+    });
+    setShowScheduleForm(true);
+  };
+
+  const handleDelete = async (pickupId) => {
+    if (window.confirm('Are you sure you want to cancel this pickup?')) {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(buildApiUrl(`listings/${pickupId}`), {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to cancel pickup');
+        }
+
+        // Remove from local state
+        setScheduledPickups(prev => prev.filter(pickup => pickup.id !== pickupId));
+      } catch (err) {
+        setError('Failed to cancel pickup');
+        console.error('Error deleting pickup:', err);
+      }
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      quantity: '',
+      quantity_unit: 'kg',
+      expiry_date: '',
+      available_date: '',
+      available_time: '',
+      description: '',
+      storage_instructions: ''
+    });
+    setEditingPickup(null);
+    setShowScheduleForm(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await schedulePickup(formData);
-      setShowScheduleForm(false);
-      setFormData({
-        name: '',
-        quantity: '',
-        quantity_unit: 'kg',
-        expiry_date: '',
-        available_date: '',
-        available_time: '',
-        description: '',
-        storage_instructions: ''
-      });
-      // Reload the pickups list
-      loadScheduledPickups();
+      if (editingPickup) {
+        // Update existing pickup
+        const token = localStorage.getItem('token');
+        const response = await fetch(buildApiUrl(`listings/${editingPickup}`), {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            quantity: parseFloat(formData.quantity),
+            quantity_unit: formData.quantity_unit,
+            expiry_date: formData.expiry_date,
+            available_date: formData.available_date,
+            available_time: formData.available_time,
+            description: formData.description,
+            storage_instructions: formData.storage_instructions
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to update pickup');
+        }
+
+        const updatedPickup = await response.json();
+        setScheduledPickups(prev => 
+          prev.map(pickup => 
+            pickup.id === editingPickup 
+              ? { 
+                  ...pickup, 
+                  items: updatedPickup.name, 
+                  date: updatedPickup.available_date, 
+                  time: updatedPickup.available_time 
+                }
+              : pickup
+          )
+        );
+      } else {
+        // Create new pickup
+        await schedulePickup(formData);
+        loadScheduledPickups();
+      }
+      resetForm();
     } catch (err) {
       setError(err.message);
     }
@@ -147,6 +232,7 @@ export default function RestaurantScheduledPickups() {
     <div className={styles.scheduledPage}>
       <div className={styles.header}>
         <h1 className={styles.title}>Scheduled Pickups</h1>
+        <p className={styles.subtitle}>Manage your food donation schedule</p>
         <button 
           className={styles.addButton}
           onClick={() => setShowScheduleForm(true)}
@@ -182,8 +268,16 @@ export default function RestaurantScheduledPickups() {
                 </div>
               </div>
               <div className={styles.actions}>
-                <button className={styles.actionButton}>Edit</button>
-                <button className={`${styles.actionButton} ${styles.cancelButton}`}>
+                <button 
+                  className={styles.actionButton}
+                  onClick={() => handleEdit(pickup)}
+                >
+                  Edit
+                </button>
+                <button 
+                  className={`${styles.actionButton} ${styles.cancelButton}`}
+                  onClick={() => handleDelete(pickup.id)}
+                >
                   Cancel
                 </button>
               </div>
@@ -195,7 +289,7 @@ export default function RestaurantScheduledPickups() {
       {showScheduleForm && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <h2>Schedule New Pickup</h2>
+            <h2>{editingPickup ? 'Edit Pickup' : 'Schedule New Pickup'}</h2>
             <form onSubmit={handleSubmit}>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Food Item Name</label>
@@ -294,7 +388,7 @@ export default function RestaurantScheduledPickups() {
                 <button
                   type="button"
                   className={`${styles.actionButton} ${styles.cancelButton}`}
-                  onClick={() => setShowScheduleForm(false)}
+                  onClick={resetForm}
                 >
                   Cancel
                 </button>
@@ -302,7 +396,7 @@ export default function RestaurantScheduledPickups() {
                   type="submit"
                   className={styles.actionButton}
                 >
-                  Schedule Pickup
+                  {editingPickup ? 'Update Pickup' : 'Schedule Pickup'}
                 </button>
               </div>
             </form>

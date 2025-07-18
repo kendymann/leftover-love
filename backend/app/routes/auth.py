@@ -12,7 +12,7 @@ from ..core.security import (
     get_current_user
 )
 from ..core.config import settings
-from ..schemas.auth import UserCreate, UserLogin, Token, UserResponse, User
+from ..schemas.auth import UserCreate, UserLogin, Token, UserResponse
 from ..models.user import User as UserModel
 from ..database.session import get_db
 

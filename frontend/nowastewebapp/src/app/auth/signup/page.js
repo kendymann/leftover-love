@@ -47,8 +47,10 @@ export default function SignUp() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ...formData,
-          userType: selectedType,
+          email: formData.email,
+          username: formData.name, // Map 'name' to 'username'
+          password: formData.password,
+          user_type: selectedType, // Map 'selectedType' to 'user_type'
         }),
       });
 
@@ -58,8 +60,18 @@ export default function SignUp() {
         throw new Error(data.message || 'Sign up failed');
       }
 
-      // Handle successful signup
-      window.location.href = `/dashboards/${selectedType}`;
+      // Store auth data after successful signup
+      localStorage.setItem('token', data.access_token || data.token);
+      localStorage.setItem('userType', selectedType);
+      localStorage.setItem('user', JSON.stringify(data.user || {
+        username: formData.name,
+        email: formData.email,
+        user_type: selectedType
+      }));
+
+      // Handle successful signup - capitalize first letter to match folder names
+      const dashboardPath = selectedType.charAt(0).toUpperCase() + selectedType.slice(1);
+      window.location.href = `/dashboards/${dashboardPath}`;
     } catch (error) {
       setError(error.message || 'Something went wrong. Please try again.');
     } finally {

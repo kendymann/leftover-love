@@ -1,0 +1,320 @@
+/* Minimalistic Restaurant Scheduled Pickups */
+.scheduledPage {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: #FAFAFA;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #2C432C;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6B7B6B;
+  margin: 0 0 2rem 0;
+  font-weight: 400;
+}
+
+.addButton {
+  background: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addButton:hover {
+  background: #6B8B6B;
+  transform: translateY(-1px);
+}
+
+/* Pickups List */
+.pickupsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pickupCard {
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.pickupCard:hover {
+  border-color: #7C9A7C;
+  transform: translateY(-1px);
+}
+
+.pickupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.charityName {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2C432C;
+  margin: 0;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status.confirmed {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.status.pending {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.pickupDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6B7B6B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail span:last-child {
+  font-size: 0.95rem;
+  color: #2C432C;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.actionButton {
+  background: #7C9A7C;
+  color: white;
+}
+
+.actionButton:hover {
+  background: #6B8B6B;
+  transform: translateY(-1px);
+}
+
+.actionButton.cancelButton {
+  background: #DC2626;
+  color: white;
+}
+
+.actionButton.cancelButton:hover {
+  background: #B91C1C;
+}
+
+/* Schedule Form */
+.scheduleForm {
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #2C432C;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2C432C;
+  margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #7C9A7C;
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  background: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submitButton:hover {
+  background: #6B8B6B;
+  transform: translateY(-1px);
+}
+
+.cancelFormButton {
+  background: #F3F4F6;
+  color: #374151;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelFormButton:hover {
+  background: #E5E7EB;
+  transform: translateY(-1px);
+}
+
+/* States */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6B7B6B;
+  font-size: 1rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  color: #6B7B6B;
+  font-size: 1rem;
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.errorMessage {
+  color: #DC2626;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.retryButton {
+  background: #7C9A7C;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background: #6B8B6B;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .scheduledPage {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .pickupHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .pickupDetails {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+}

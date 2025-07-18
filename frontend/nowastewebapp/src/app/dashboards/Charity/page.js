@@ -133,100 +133,79 @@ export default function CharityDashboard() {
 
   return (
     <div className={styles.dashboard}>
-      <h1 className={styles.title}>Charity Dashboard</h1>
+      {/* Header with Branding */}
+      <div className={styles.header}>
+        <h1 className={styles.title}>Welcome Back, Community Champion</h1>
+        <p className={styles.subtitle}>Your impact is making a real difference in our community</p>
+      </div>
       
-      <div className={styles.statsGrid}>
-        <div className={styles.statCard}>
-          <h3>Available Pickups</h3>
-          <p className={styles.statNumber}>
+      {/* Key Metrics */}
+      <div className={styles.metricsGrid}>
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.availablePickups}
-          </p>
+          </div>
+          <div className={styles.metricLabel}>Available Pickups</div>
         </div>
-        <div className={styles.statCard}>
-          <h3>Total Collections</h3>
-          <p className={styles.statNumber}>
+        
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.totalCollections}
-          </p>
+          </div>
+          <div className={styles.metricLabel}>Total Collections</div>
         </div>
-        <div className={styles.statCard}>
-          <h3>Food Collected (kg)</h3>
-          <p className={styles.statNumber}>
-            {isLoading ? '...' : dashboardData.stats.foodCollected}
-          </p>
+        
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
+            {isLoading ? '...' : dashboardData.stats.foodCollected}kg
+          </div>
+          <div className={styles.metricLabel}>Food Rescued</div>
         </div>
-        <div className={styles.statCard}>
-          <h3>People Helped</h3>
-          <p className={styles.statNumber}>
+        
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.peopleHelped}
-          </p>
+          </div>
+          <div className={styles.metricLabel}>People Helped</div>
         </div>
       </div>
 
-      <div className={styles.contentGrid}>
-        <div className={styles.recentActivity}>
-          <h2>Recent Activity</h2>
+      {/* Recent Activity */}
+      <div className={styles.activitySection}>
+        <h2 className={styles.sectionTitle}>Recent Activity</h2>
+        {isLoading ? (
+          <div className={styles.loading}>Loading activities...</div>
+        ) : (
           <div className={styles.activityList}>
-            {isLoading ? (
-              <div className={styles.loading}>Loading activity...</div>
-            ) : dashboardData.recentActivity.length === 0 ? (
-              <p className={styles.emptyMessage}>No recent activity to display</p>
-            ) : (
-              dashboardData.recentActivity.map((activity) => (
-                <div key={activity.id} className={styles.activityItem}>
-                  <div className={styles.activityContent}>
-                    <p className={styles.activityMessage}>{activity.message}</p>
+            {dashboardData.recentActivity.map((activity) => (
+              <div key={activity.id} className={styles.activityItem}>
+                <div className={styles.activityContent}>
+                  <div className={styles.activityMessage}>{activity.message}</div>
+                  <div className={styles.activityDetails}>
                     {activity.foodSaved && (
-                      <p className={styles.activityDetail}>Food saved: {activity.foodSaved}</p>
+                      <span className={styles.activityDetail}>
+                        Food saved: {activity.foodSaved}
+                      </span>
                     )}
                     {activity.peopleHelped && (
-                      <p className={styles.activityDetail}>People helped: {activity.peopleHelped}</p>
+                      <span className={styles.activityDetail}>
+                        People helped: {activity.peopleHelped}
+                      </span>
                     )}
                     {activity.scheduledFor && (
-                      <p className={styles.activityDetail}>
-                        Scheduled for: {formatDate(activity.scheduledFor)}
-                      </p>
+                      <span className={styles.activityDetail}>
+                        Scheduled: {formatDate(activity.scheduledFor)}
+                      </span>
                     )}
                   </div>
-                  <span className={styles.activityTime}>
-                    {formatDate(activity.timestamp)}
-                  </span>
                 </div>
-              ))
-            )}
-          </div>
-        </div>
-
-        <div className={styles.availablePickups}>
-          <h2>Available Pickups</h2>
-          <div className={styles.pickupsList}>
-            {isLoading ? (
-              <div className={styles.loading}>Loading available pickups...</div>
-            ) : dashboardData.availablePickups.length === 0 ? (
-              <p className={styles.emptyMessage}>No available pickups at the moment</p>
-            ) : (
-              dashboardData.availablePickups.map((pickup) => (
-                <div key={pickup.id} className={styles.pickupCard}>
-                  <div className={styles.pickupHeader}>
-                    <h3>{pickup.restaurantName}</h3>
-                  </div>
-                  <div className={styles.pickupDetails}>
-                    <p className={styles.address}>{pickup.restaurantAddress}</p>
-                    <p className={styles.items}>{pickup.items}</p>
-                    <p className={styles.pickupTime}>
-                      Available: {pickup.availableDate} at {pickup.availableTime}
-                    </p>
-                    <p className={styles.preferredTime}>
-                      Preferred pickup window: {pickup.preferredPickupTime}
-                    </p>
-                  </div>
-                  <button className={styles.claimButton}>
-                    Claim Pickup
-                  </button>
+                <div className={styles.activityTime}>
+                  {formatDate(activity.timestamp)}
                 </div>
-              ))
-            )}
+              </div>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

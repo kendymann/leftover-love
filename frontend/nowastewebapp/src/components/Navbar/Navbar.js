@@ -1,10 +1,11 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import styles from './Navbar.module.css';
 
 const Navbar = ({ userType }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const basePath = `/dashboards/${userType}`;
 
   const navItems = [
@@ -12,6 +13,16 @@ const Navbar = ({ userType }) => {
     { name: 'Scheduled Pickups', path: `${basePath}/scheduled` },
     { name: 'Completed Pickups', path: `${basePath}/completed` },
   ];
+
+  const handleLogout = () => {
+    // Clear authentication data
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userType');
+    
+    // Redirect to home page
+    router.push('/');
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -28,9 +39,14 @@ const Navbar = ({ userType }) => {
           </Link>
         ))}
       </div>
-      <Link href={`${basePath}/account`} className={styles.accountLink}>
-        Account
-      </Link>
+      <div className={styles.rightSection}>
+        <Link href={`${basePath}/account`} className={styles.accountLink}>
+          Account
+        </Link>
+        <button onClick={handleLogout} className={styles.logoutButton}>
+          Logout
+        </button>
+      </div>
     </nav>
   );
 };

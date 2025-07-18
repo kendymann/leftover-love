@@ -11,12 +11,16 @@ export const metadata = {
   description: "Connect restaurants with surplus food to charities and local food banks. Reduce food waste while helping communities in need.",
   keywords: "food waste, charity, restaurants, donations, sustainability, community",
   author: "Leftover Love Team",
-  viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: "/Leftover Love Logo Design.png",
     shortcut: "/Leftover Love Logo Design.png",
     apple: "/Leftover Love Logo Design.png",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {

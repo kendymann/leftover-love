@@ -1,6 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import { motion } from 'framer-motion';
 
@@ -8,14 +8,34 @@ import { motion } from 'framer-motion';
 export default function AccountPage() {
   const { userType } = useParams();
   const [isEditing, setIsEditing] = useState(false);
+  const [userData, setUserData] = useState(null);
   const [formData, setFormData] = useState({
-    name: userType === 'Restaurant' ? "Fresh Bites Restaurant" : "Local Food Bank",
-    email: userType === 'Restaurant' ? "contact@freshbites.com" : "help@localfoodbank.org",
-    phone: userType === 'Restaurant' ? "(555) 123-4567" : "(555) 987-6543",
-    address: userType === 'Restaurant' ? "123 Main St, City" : "456 Oak Ave, City",
+    username: '',
+    email: '',
+    phone: '',
+    address: '',
   });
 
   const [errors, setErrors] = useState({ email: "", phone: "", address: "" });
+
+  // Load user data from localStorage on component mount
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        setUserData(user);
+        setFormData({
+          username: user.username || '',
+          email: user.email || '',
+          phone: user.phone || '',
+          address: user.address || '',
+        });
+      }
+    } catch (error) {
+      console.error('Error loading user data:', error);
+    }
+  }, []);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,31 +72,17 @@ export default function AccountPage() {
   const isFormValid = () => {
     return validateEmail(formData.email) && validatePhone(formData.phone) && validateAddress(formData.address);
   };
-  
-  // This will be replaced with actual data from the backend
-  const accountData = {
-    restaurant: {
-      name: "Fresh Bites Restaurant",
-      email: "contact@freshbites.com",
-      address: "123 Main St, City",
-      phone: "(555) 123-4567",
-      description: "Family-owned restaurant specializing in fresh, local ingredients",
-      operatingHours: "Mon-Sat: 11:00 AM - 10:00 PM",
-      preferredPickupTimes: "2:00 PM - 4:00 PM"
-    },
-    charity: {
-      name: "Local Food Bank",
-      email: "help@localfoodbank.org",
-      address: "456 Oak Ave, City",
-      phone: "(555) 987-6543",
-      description: "Non-profit organization helping to feed local communities",
-      serviceArea: "Within 10 miles of city center",
-      storageCapacity: "500 sq ft of refrigerated storage"
-    }
-  };
 
-  const data = userType === 'Restaurant' ? accountData.restaurant : accountData.charity;
   const hasErrors = Object.values(errors).some((error) => error);
+
+  // Display loading if user data hasn't loaded yet
+  if (!userData) {
+    return (
+      <div className={styles.accountPage}>
+        <div className={styles.loading}>Loading account information...</div>
+      </div>
+    );
+  }
 
 
   return (
@@ -109,12 +115,12 @@ export default function AccountPage() {
           <h2 className={styles.sectionTitle}>Profile Information</h2>
           <div className={styles.formGrid}>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Organization Name</label>
+              <label className={styles.label}>Username</label>
               <input
                 type="text"
                 className={styles.input}
-                name="name"
-                value={formData.name}
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 disabled={!isEditing}
               />

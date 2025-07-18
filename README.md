@@ -222,16 +222,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-Made with ❤️ by the Leftover Love Team
+Made by Jayden Truong, Michael Bazzett, Rohin Aulukh, and Hugo Najafi (Goats)
 
-## 📞 Support
-
-If you have any questions or need support, please:
-- Open an issue on GitHub
-- Check our [documentation](http://localhost:8000/docs)
-- Contact us at support@leftoverlove.com
 
 ---
 
-**Together, we're turning waste into warmth and surplus into smiles! 🌟**
+
 

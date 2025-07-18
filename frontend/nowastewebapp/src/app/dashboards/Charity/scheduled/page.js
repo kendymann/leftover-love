@@ -66,6 +66,30 @@ export default function CharityScheduledPickups() {
     }
   }
 
+  const handleCancelPickup = async (pickupId) => {
+    if (window.confirm('Are you sure you want to cancel this pickup?')) {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(buildApiUrl(`charities/requests/${pickupId}`), {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to cancel pickup');
+        }
+
+        // Remove from local state
+        setScheduledPickups(prev => prev.filter(pickup => pickup.id !== pickupId));
+      } catch (err) {
+        setError('Failed to cancel pickup');
+        console.error('Error canceling pickup:', err);
+      }
+    }
+  };
+
   if (error) {
     return (
       <div className={styles.errorContainer}>
@@ -82,7 +106,10 @@ export default function CharityScheduledPickups() {
 
   return (
     <div className={styles.scheduledPage}>
-      <h1 className={styles.title}>Scheduled Pickups</h1>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Scheduled Pickups</h1>
+        <p className={styles.subtitle}>Your upcoming food collections</p>
+      </div>
 
       <div className={styles.pickupsList}>
         {isLoading ? (
@@ -119,7 +146,10 @@ export default function CharityScheduledPickups() {
                 </div>
               </div>
               <div className={styles.actions}>
-                <button className={`${styles.actionButton} ${styles.cancelButton}`}>
+                <button 
+                  className={styles.actionButton}
+                  onClick={() => handleCancelPickup(pickup.id)}
+                >
                   Cancel
                 </button>
               </div>

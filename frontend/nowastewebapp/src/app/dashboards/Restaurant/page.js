@@ -113,69 +113,84 @@ export default function RestaurantDashboard() {
 
   return (
     <div className={styles.dashboard}>
-      <h1 className={styles.title}>Restaurant Dashboard</h1>
+      {/* Header */}
+      <div className={styles.header}>
+        <h1 className={styles.title}>Welcome Back, Food Partner</h1>
+        <p className={styles.subtitle}>Your generosity is transforming our community, one meal at a time</p>
+      </div>
       
-      <div className={styles.statsGrid}>
-        <div className={styles.statCard}>
-          <h3>Active Pickups</h3>
-          <p className={styles.statNumber}>
+      {/* Key Metrics */}
+      <div className={styles.metricsGrid}>
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.activePickups}
-          </p>
+          </div>
+          <div className={styles.metricLabel}>Active Pickups</div>
         </div>
-        <div className={styles.statCard}>
-          <h3>Total Donations</h3>
-          <p className={styles.statNumber}>
+        
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.totalDonations}
-          </p>
+          </div>
+          <div className={styles.metricLabel}>Total Donations</div>
         </div>
-        <div className={styles.statCard}>
-          <h3>Food Saved (kg)</h3>
-          <p className={styles.statNumber}>
-            {isLoading ? '...' : dashboardData.stats.foodSaved}
-          </p>
+        
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
+            {isLoading ? '...' : dashboardData.stats.foodSaved}kg
+          </div>
+          <div className={styles.metricLabel}>Food Saved</div>
         </div>
-        <div className={styles.statCard}>
-          <h3>Impact Score</h3>
-          <p className={styles.statNumber}>
+        
+        <div className={styles.metric}>
+          <div className={styles.metricValue}>
             {isLoading ? '...' : dashboardData.stats.impactScore}
-          </p>
+          </div>
+          <div className={styles.metricLabel}>Impact Score</div>
         </div>
       </div>
 
-      <div className={styles.recentActivity}>
-        <h2>Recent Activity</h2>
-        <div className={styles.activityList}>
-          {isLoading ? (
-            <div className={styles.loading}>Loading activity...</div>
-          ) : dashboardData.recentActivity.length === 0 ? (
-            <p className={styles.emptyMessage}>No recent activity to display</p>
-          ) : (
-            dashboardData.recentActivity.map((activity) => (
+      {/* Recent Activity */}
+      <div className={styles.activitySection}>
+        <h2 className={styles.sectionTitle}>Recent Activity</h2>
+        {isLoading ? (
+          <div className={styles.loading}>Loading activities...</div>
+        ) : (
+          <div className={styles.activityList}>
+            {dashboardData.recentActivity.map((activity) => (
               <div key={activity.id} className={styles.activityItem}>
                 <div className={styles.activityContent}>
-                  <p className={styles.activityMessage}>{activity.message}</p>
-                  {activity.scheduledFor && (
-                    <p className={styles.activityDetail}>
-                      Scheduled for: {formatDate(activity.scheduledFor)}
-                    </p>
-                  )}
-                  {activity.items && (
-                    <p className={styles.activityDetail}>Items: {activity.items}</p>
-                  )}
-                  {activity.foodSaved && (
-                    <p className={styles.activityDetail}>Food saved: {activity.foodSaved}</p>
-                  )}
-                  {activity.peopleHelped && (
-                    <p className={styles.activityDetail}>People helped: {activity.peopleHelped}</p>
-                  )}
+                  <div className={styles.activityMessage}>{activity.message}</div>
+                  <div className={styles.activityDetails}>
+                    {activity.scheduledFor && (
+                      <span className={styles.activityDetail}>
+                        Scheduled: {formatDate(activity.scheduledFor)}
+                      </span>
+                    )}
+                    {activity.items && (
+                      <span className={styles.activityDetail}>
+                        Items: {activity.items}
+                      </span>
+                    )}
+                    {activity.foodSaved && (
+                      <span className={styles.activityDetail}>
+                        Food saved: {activity.foodSaved}
+                      </span>
+                    )}
+                    {activity.peopleHelped && (
+                      <span className={styles.activityDetail}>
+                        People helped: {activity.peopleHelped}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <span className={styles.activityTime}>
+                <div className={styles.activityTime}>
                   {formatDate(activity.timestamp)}
-                </span>
+                </div>
               </div>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

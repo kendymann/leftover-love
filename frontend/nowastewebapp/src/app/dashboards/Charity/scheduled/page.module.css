@@ -1,53 +1,83 @@
 .scheduledPage {
   padding: 1rem;
+  background: linear-gradient(135deg, #F5F7F5 0%, #E8EFE8 100%);
+  min-height: 100vh;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #7C9A7C 0%, #8DAB8D 100%);
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 12px 32px rgba(124, 154, 124, 0.3);
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2C432C;
-  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0;
+  background: linear-gradient(45deg, #FFFFFF, #F0F8F0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .addButton {
-  background-color: #7C9A7C;
-  color: white;
-  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2C432C;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 2px 8px rgba(124, 154, 124, 0.2);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .addButton:hover {
-  background-color: #8DAB8D;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(124, 154, 124, 0.3);
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .pickupsList {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .pickupCard {
   background: rgba(255, 255, 255, 0.95);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
+  padding: 2rem;
+  border-radius: 16px;
   box-shadow: 0 8px 32px rgba(118, 143, 118, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.7);
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.pickupCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #7C9A7C, #8DAB8D);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.pickupCard:hover::before {
+  transform: scaleX(1);
 }
 
 .pickupCard:hover {

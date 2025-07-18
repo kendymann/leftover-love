@@ -38,8 +38,8 @@ export default function Login() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ...formData,
-          userType
+          email: formData.email,
+          password: formData.password
         })
       });
 
@@ -52,10 +52,11 @@ export default function Login() {
       // Store auth data
       localStorage.setItem('token', data.access_token || data.token);
       localStorage.setItem('userType', userType);
-      localStorage.setItem('userData', JSON.stringify(data.user));
+      localStorage.setItem('user', JSON.stringify(data.user));
 
-      // Redirect to appropriate dashboard
-      router.push(`/dashboards/${userType}`);
+      // Redirect to appropriate dashboard (capitalize first letter to match folder names)
+      const dashboardPath = userType.charAt(0).toUpperCase() + userType.slice(1);
+      router.push(`/dashboards/${dashboardPath}`);
     } catch (error) {
       setError(error.message || 'Something went wrong. Please try again.');
     } finally {
